@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+		xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+<loc>http://YOUR.DOMAIN.COM</loc>
+	<lastmod>2012-04-21T11:05:48+09:00</lastmod>
+	<priority>1.0</priority>
+</url>
+
+<url>
+	<loc>http://YOUR.DOMAIN.COM/link/2012/04/21/001-post-example/</loc>
+	<lastmod>2012-04-21T00:00:00+09:00</lastmod>
+</url>
+
+</urlset>

@@ -1,0 +1,19 @@
+# Presentation Settings
+
+sitename: Public Draft
+tagline: Write down what I've learned
+desc: 調べたことを書いていく。ただそれだけ。
+url: http://publickdraft.studiomohawk.com
+
+# TOOL Settings
+ga: UA-XXXX-XX
+
+# System Settings
+
+pygments:    true
+markdown:    kramdown
+permalink:   pretty
+kramdown:
+  auto_ids: false
+exclude: LICENSE, README.markdown, Rakefile, .rbenv-version, ji.sublime-project, ji.sublime-workspace
+include: _includes

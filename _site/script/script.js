@@ -1,1 +1,61 @@
-(function(a,b){var c,d=a.getElementsByTagName(b)[0],e=function(e,f){if(a.getElementById(f))return;c=a.createElement(b),c.src=e,c.id=f,d.parentNode.insertBefore(c,d)};e("//connect.facebook.net/en_US/all.js#xfbml=1","fbjssdk"),e("https://apis.google.com/js/plusone.js","gplus1js"),e("//platform.twitter.com/widgets.js","tweetjs")})(document,"script"),function(a){function g(){f.content="width=device-width,minimum-scale="+e[0]+",maximum-scale="+e[1],a.removeEventListener(c,g,!0)}var b="addEventListener",c="gesturestart",d="querySelectorAll",e=[1,1],f=d in a?a[d]("meta[name=viewport]"):[];(f=f[f.length-1])&&b in a&&(g(),e=[.25,1.6],a[b](c,g,!0))}(document),function(a){var b=a.document;if(!location.hash&&a.addEventListener){window.scrollTo(0,1);var c=1,d=function(){return a.pageYOffset||b.compatMode==="CSS1Compat"&&b.documentElement.scrollTop||b.body.scrollTop||0},e=setInterval(function(){b.body&&(clearInterval(e),c=d(),a.scrollTo(0,c===1?0:1))},15);a.addEventListener("load",function(){setTimeout(function(){d()<20&&a.scrollTo(0,c===1?0:1)},0)})}}(this);
+(function(d, s) {
+	var js, fjs = d.getElementsByTagName(s)[0],
+		load = function(url, id) {
+			if (d.getElementById(id)) {
+				return;
+			}
+			js = d.createElement(s);
+			js.src = url;
+			js.id = id;
+			fjs.parentNode.insertBefore(js, fjs);
+		};
+	load('//connect.facebook.net/en_US/all.js#xfbml=1', 'fbjssdk');
+	load('https://apis.google.com/js/plusone.js', 'gplus1js');
+	load('//platform.twitter.com/widgets.js', 'tweetjs');
+}(document, 'script'));
+(function(doc) {
+	var addEvent = 'addEventListener',
+		type = 'gesturestart',
+		qsa = 'querySelectorAll',
+		scales = [1, 1],
+		meta = qsa in doc ? doc[qsa]('meta[name=viewport]') : [];
+
+	function fix() {
+		meta.content = 'width=device-width,minimum-scale=' + scales[0] + ',maximum-scale=' + scales[1];
+		doc.removeEventListener(type, fix, true);
+	}
+	if ((meta = meta[meta.length - 1]) && addEvent in doc) {
+		fix();
+		scales = [.25, 1.6];
+		doc[addEvent](type, fix, true);
+	}
+}(document));
+(function(win) {
+	var doc = win.document;
+	// If there's a hash, or addEventListener is undefined, stop here
+	if (!location.hash && win.addEventListener) {
+		//scroll to 1
+		window.scrollTo(0, 1);
+		var scrollTop = 1,
+			getScrollTop = function() {
+				return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+			},
+			//reset to 0 on bodyready, if needed
+			bodycheck = setInterval(function() {
+				if (doc.body) {
+					clearInterval(bodycheck);
+					scrollTop = getScrollTop();
+					win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+				}
+			}, 15);
+		win.addEventListener("load", function() {
+			setTimeout(function() {
+				//at load, if user hasn't scrolled more than 20 or so...
+				if (getScrollTop() < 20) {
+					//reset to hide addr bar at onload
+					win.scrollTo(0, scrollTop === 1 ? 0 : 1);
+				}
+			}, 0);
+		});
+	}
+})(this);

@@ -35,7 +35,7 @@ end
 
 desc "Minify CSS with sqwish"
 task :sqwish do
-  system "sqwish _site/style/style.css -o _site/style/style.css --strict"
+  system "sqwish _site/style/style.css -o _site/style/style.css"
 end
 
 desc "Minify JS with UglyfyJS"
@@ -57,18 +57,25 @@ end
 
 desc "Package app for production"
 task :package do
+
   puts "Build LESS for production..."
   Rake::Task["lessproduction"].invoke
+
   puts "Build Jekyll..."
   Rake::Task["build"].invoke
+
   puts "Minify CSS with sqwish..."
   Rake::Task["sqwish"].invoke
+
   puts "Minify JS with UglyfyJS..."
   Rake::Task["uglifyjs"].invoke
+
   puts "Optimise all PNG files with optipng..."
   Rake::Task["optipng"].invoke
+
   puts "git commit -am 'package is done'..."
   system "git commit -am 'package is done'"
+
   puts "Ready for deploy!"
 end
 

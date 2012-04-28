@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<link rel="hub" href="https://pubsubhubbub.appspot.com"/>
 	<title>Public Draft | Just writing down what I've found</title>
-	<link href="http://publickdraft.studiomohawk.com/atom.xml" rel="self"/>
-	<link href="http://publickdraft.studiomohawk.com"/>
-	<updated>2012-04-28T20:07:55+09:00</updated>
+	<link href="http://publicdraft.studiomohawk.com/atom.xml" rel="self"/>
+	<link href="http://publicdraft.studiomohawk.com"/>
+	<updated>2012-04-28T20:34:18+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
@@ -13,9 +13,9 @@
 	
 		<entry>
 			<title>Sublime Text 2</title>
-			<link href="http://publickdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2/"/>
+			<link href="http://publicdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2/"/>
 			<updated></updated>
-			<id>http://publickdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2</id>
+			<id>http://publicdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2</id>
 			<content type="html">
 				&lt;h2&gt;インストール&lt;/h2&gt;
 
@@ -294,9 +294,9 @@ Sublime Textは閉じたままで作業しよう。&lt;/p&gt;
 	
 		<entry>
 			<title>Build Script using Jake</title>
-			<link href="http://publickdraft.studiomohawk.com/2012/04/07/20-41-jake/"/>
+			<link href="http://publicdraft.studiomohawk.com/2012/04/07/20-41-jake/"/>
 			<updated></updated>
-			<id>http://publickdraft.studiomohawk.com/2012/04/07/20-41-jake</id>
+			<id>http://publicdraft.studiomohawk.com/2012/04/07/20-41-jake</id>
 			<content type="html">
 				&lt;h2&gt;パッケージ&lt;/h2&gt;
 

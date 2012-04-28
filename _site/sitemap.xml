@@ -5,14 +5,19 @@
 		xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
 		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
-<loc>http://YOUR.DOMAIN.COM</loc>
-	<lastmod>2012-04-21T11:05:48+09:00</lastmod>
+<loc>http://publickdraft.studiomohawk.com</loc>
+	<lastmod>2012-04-28T12:57:26+09:00</lastmod>
 	<priority>1.0</priority>
 </url>
 
 <url>
-	<loc>http://YOUR.DOMAIN.COM/link/2012/04/21/001-post-example/</loc>
-	<lastmod>2012-04-21T00:00:00+09:00</lastmod>
+	<loc>http://publickdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2/</loc>
+	<lastmod>2012-04-14T00:00:00+09:00</lastmod>
+</url>
+
+<url>
+	<loc>http://publickdraft.studiomohawk.com/2012/04/07/20-41-jake/</loc>
+	<lastmod>2012-04-07T00:00:00+09:00</lastmod>
 </url>
 
 </urlset>

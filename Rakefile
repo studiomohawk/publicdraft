@@ -1,9 +1,9 @@
 # Rsync Deploy config
-backet = ""
+# backet = ""
 
 # Tasks
 desc "Given a title as an argument, create a new post file"
-  task :write, [:title] do |t, args|
+task :write, [:title] do |t, args|
     filename = "#{Time.now.strftime('%Y-%m-%d')}-#{args.title.gsub(/\s/, '-').downcase}.markdown"
     path = File.join("_posts", filename)
     if File.exist? path; raise RuntimeError.new("Won't clobber #{path}"); end
@@ -16,8 +16,7 @@ date: #{Time.now.strftime('%Y-%m-%d %k:%M:%S')}
 category:
 ---
 EOS
-  end
-  system "git add #{filename}"
+    end
   puts "Now open #{path} in an editor."
 end
 
@@ -27,8 +26,9 @@ task :preview do
 end
 
 desc "Build LESS"
-task :less-build do
-  system "laessig observe style/style.less"
+task :lessbuild do
+  # system "laessig observe /style/style.less"
+  system "collate -t style.css -d style/ style.less -w"
 end
 
 desc "Build site"
@@ -39,7 +39,7 @@ end
 desc "Package app for production"
 task :package do
 
-  Rake::Task["build"].invoke
+Rake::Task["build"].invoke
 
   system "git commit -am 'package is done'"
 end
@@ -51,7 +51,7 @@ task :optipng do
   end
 end
 
-desc "Deploy Amazon s3 Using s3Sync"
-task :deploy do
-  system('s3sync -rpv _site/ #{backet}:')
-end
+#desc "Deploy Amazon s3 Using s3Sync"
+#task :deploy do
+#  system('s3sync -rpv _site/ #{backet}:')
+#end

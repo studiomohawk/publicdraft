@@ -1,27 +1,15 @@
-{% include sys_header.html %}
+{% include system/sys_header.html %}
 <div id="page" class="page page-{{ page.layout }}">
-<header class="the-header">
-<div class="unit">
-  <div class="unit-inner">
-
-  </div><!-- unit-inner -->
-</div><!-- unit -->
-</header>
+{% include module/header.html %}
 
 <div role="main" class="body">
 <div class="unit">
-  <div class="unit-inner">
-
-  </div><!-- unit-inner -->
+	<div class="unit-inner">
+	{{ content }}
+	</div><!-- unit-inner -->
 </div><!-- unit -->
 </div><!-- body -->
 
-<footer class="the-footer">
-<div class="unit">
-  <div class="unit-inner">
-
-  </div><!-- unit-inner -->
-</div><!-- unit -->
-</footer>
+{% include module/footer.html %}
 </div><!-- #page -->
-{% include sys_footer.html %}
+{% include system/sys_footer.html %}

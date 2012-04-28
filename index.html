@@ -1,0 +1,38 @@
+---
+layout: home
+---
+{% for post in site.posts limit:1 %}
+<article class="the-article hentry">
+	<div class="mod">
+		<div class="inner">
+			<div class="hd">
+				<div class="group">
+				<time class="date-pub milli" title="{{ post.date | date_to_xmlschema }}">
+					<span class="year">{{ post.date | date: '%y' }}</span>
+					<span class="month">{{ post.date | date: '%m' }}</span>
+					<span class="day">{{ post.date | date: '%d' }}</span>
+				</time>
+				<h1 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h1>
+				</div><!-- group -->
+			</div>
+			<div class="bd">
+				<div class="content">
+					{{ post.content }}
+				</div>
+			</div>
+			<div class="ft">
+				<div class="group">
+					<nav class="page-nav-bottom">
+						{% if post.previous %}
+						<span class="page-nav-item floatLeft"><a class="internal" rel="prev" href="{{ post.previous.url }}" title="	View {{ post.previous.title }}">&larr; View previous article</a></span>
+						{% endif %}
+						{% if post.next %}
+						<span class="page-nav-item floatRight"><a class="internal" rel="next"	href="{{ post.next.url }}" title="	View {{ post.next.title }}">View next article &rarr;</a></span>
+						{% endif %}
+					</nav><!-- /.page-nav-bottom -->
+				</div><!-- group -->
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+</article>
+{% endfor %}

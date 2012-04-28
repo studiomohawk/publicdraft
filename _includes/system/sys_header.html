@@ -1,20 +1,28 @@
 <!doctype html>
-<html class="no-js" lang="ja" {% include p.md %}>
+<html class="no-js" lang="ja" {% include system/s.md %}>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
-  <meta name="description" content="">
+  {% case page.layout %}
+  {% when 'home' %}
+  <title itemprop="name" property="og:title" content="{{ site.sitename }} | {{ site.tagline }}">{{ site.sitename }} | {{ site.tagline }}</title>
+  <meta itemprop="description" name="description" property="og:description" content="{{ site.desc }}">
+  {% when 'post' %}
+  <title itemprop="name" content="{{ page.title }} | {{ site.sitename }}">{{ page.title }} | {{ site.sitename }} | {{ site.tagline }}</title>
+  <meta itemprop="description" name="description" property="og:description" content="{{ content | strip_html | truncatewords: 25 }}">
+  {% else %}
+  <title itemprop="name" content="{{ page.title }} | {{ site.sitename }}">{{ page.title }} | {{ site.sitename }} | {{ site.tagline }}</title>
+  <meta itemprop="description" name="description" property="og:description" content="{{ page.desctiption }}">
+  {% endcase %}
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="{{ site.url }}">
+  <meta property="og:image" content="{{ site.url }}/img/cssradar-icon-200.png">
+  <meta property="og:site_name" content="{{ site.sitename }} | {{ site.tagline }}">
 
-  <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
   <link href="{{ site.url }}/atom.xml" rel="alternate" title="{{ site.sitename }} | {{ site.tagline }}" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css">
-  <!-- All JavaScript at the bottom, except this Modernizr build.
-       Modernizr enables HTML5 elements & feature detects for optimal performance.
-       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <link rel="stylesheet" href="/style/style.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
 </head>
 <body>

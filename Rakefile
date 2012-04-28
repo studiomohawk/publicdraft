@@ -1,6 +1,3 @@
-# Rsync Deploy config
-# backet = ""
-
 # Tasks
 desc "Given a title as an argument, create a new post file"
 task :write, [:title] do |t, args|
@@ -31,17 +28,19 @@ task :lessbuild do
   system "collate -t style.css -d style/ style.less -w"
 end
 
-desc "Build site"
-task :build do
-  system "jekyll"
+desc "Build LESS for production"
+task :lessproduction do
+  system "lessc style/style.less > style/style.css"
 end
 
-desc "Package app for production"
-task :package do
+desc "Minify CSS with sqwish"
+task :sqwish do
+  system "sqwish _site/style/style.css -o _site/style/style.css --strict"
+end
 
-Rake::Task["build"].invoke
-
-  system "git commit -am 'package is done'"
+desc "Minify JS with UglyfyJS"
+task :uglifyjs do
+  system "uglifyjs --overwrite _site/script/script.js"
 end
 
 desc "Optimise all PNG files with optipng"
@@ -51,7 +50,29 @@ task :optipng do
   end
 end
 
-#desc "Deploy Amazon s3 Using s3Sync"
-#task :deploy do
-#  system('s3sync -rpv _site/ #{backet}:')
-#end
+desc "Build site"
+task :build do
+  system "jekyll"
+end
+
+desc "Package app for production"
+task :package do
+  print "Build LESS for production..."
+  Rake::Task["lessproduction"].invoke
+  print "Build Jekyll..."
+  Rake::Task["build"].invoke
+  print "Minify CSS with sqwish..."
+  Rake::Task["sqwish"].invoke
+  print "Minify JS with UglyfyJS..."
+  Rake::Task["uglifyjs"].invoke
+  print "Optimise all PNG files with optipng..."
+  Rake::Task["optipng"].invoke
+  print "git commit -am 'package is done'..."
+  system "git commit -am 'package is done'"
+  print "Ready for deploy!"
+end
+
+desc "Deploy Amazon s3 Using s3Sync"
+task :deploy do
+  system('s3sync -rpv _site/ publicdraft.studiomohawk.com:')
+end

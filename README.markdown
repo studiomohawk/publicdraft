@@ -1,4 +1,9 @@
-## About:
+## About Public Draft
+
+Public Draft is a blog to jot down stuff I've researched.  
+I've made Jekyll Initial Package called JI and this is kinda example for it.
+
+## About JI:
 
 Jekyll Init(JI) is a initial setup for [Jekyll](https://github.com/mojombo/jekyll).  
 I just don't have a time to create Jekyll blogs from scratch every time.

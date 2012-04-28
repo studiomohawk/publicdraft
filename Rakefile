@@ -57,19 +57,19 @@ end
 
 desc "Package app for production"
 task :package do
-  print "Build LESS for production..."
+  puts "Build LESS for production..."
   Rake::Task["lessproduction"].invoke
-  print "Build Jekyll..."
+  puts "Build Jekyll..."
   Rake::Task["build"].invoke
-  print "Minify CSS with sqwish..."
+  puts "Minify CSS with sqwish..."
   Rake::Task["sqwish"].invoke
-  print "Minify JS with UglyfyJS..."
+  puts "Minify JS with UglyfyJS..."
   Rake::Task["uglifyjs"].invoke
-  print "Optimise all PNG files with optipng..."
+  puts "Optimise all PNG files with optipng..."
   Rake::Task["optipng"].invoke
-  print "git commit -am 'package is done'..."
+  puts "git commit -am 'package is done'..."
   system "git commit -am 'package is done'"
-  print "Ready for deploy!"
+  puts "Ready for deploy!"
 end
 
 desc "Deploy Amazon s3 Using s3Sync"

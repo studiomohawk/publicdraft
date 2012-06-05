@@ -524,6 +524,10 @@ h6 {
   margin-top: 0;
   text-rendering: optimizelegibility;
 }
+.bold {
+  font-weight: 600;
+  text-rendering: optimizelegibility;
+}
 /* These handle massive type, for less frequently occuring bits of text (e.g. in mastheads and banners). */
 .giga {
   font-size: 80px;
@@ -2066,6 +2070,11 @@ html {
   padding: 0 0 0 90px;
 }
 .mod-backnumber ul {
+  margin-bottom: 1.5rem;
+}
+.page-home .the-article .hd .group {
+  border-bottom: 0 none;
+  padding-bottom: 0;
   margin-bottom: 1.5rem;
 }
 @media only screen and (min-width: 480px) {

@@ -1,0 +1,92 @@
+---
+layout: post
+title: "Stylus"
+date: 2012-05-20 22:19:42
+category: research
+published: false
+---
+
+## [Stylus](http://learnboost.github.com/stylus/)
+
+LESS、Sassと同じカテゴリであるCSS Preprocessor。LESS、Sassから見ると後発で現在Versionは0.27.0。  
+node.jsで開発されていて、開発しているのは同じくnode.jsのMVCフレームワークとして有名なexpress.jsをリードしているTJ Holowaychuk氏。現在は彼が所属する会社LeanBoostによってレポジトリが管理されている。
+
+Stylusの強みは後発であること。LESS、Sassという両雄がいるからこそ、両者のいいところを吸収してオリジナリティを出している。
+
+{% highlight css %}
+body
+  font 12px Helvetica, Arial, sans-serif
+
+a.button
+  -webkit-border-radius 5px
+  -moz-border-radius 5px
+  border-radius 5px
+{% endhighlight %}
+
+
+StylusではSassの.sass形式での記述法よりもシンプルにセミコロンもコロンも、カッコもないもっともミニマムな書式でスタイルシートを記述することができる。  
+もちろん通常のCSSと同じ書式でも問題なく解釈されるし、両方が混ざっていてもきちんと解釈できる。
+
+言語としての機能は少ないLESSはもちろん、CSSをプログラミング言語に近づけようとしているSassにも負けない機能を持っているのがStylusの特徴。  
+
+`Mixins`はもちろん、`@extend`やカラー操作以外も可能な`Functions`、DataURIすら自動で書き出せたりもする。
+
+StylusがLESSやSassより優れている点がエラーのリポート。
+
+{% highlight bash %}
+Error: /Users/tj/Projects/stylus/testing/test.styl:4
+  3: '  form input'
+  4: '    == padding 5px'
+
+illegal unary ==
+
+Error: /Users/tj/Projects/stylus/examples/error.styl:12
+  11: ''
+  12: 'body'
+  13: '  border-radius \'5px\''
+  14: ''
+
+expected a unit, but got string
+  at ensure() (/Users/tj/Projects/stylus/examples/error.styl:2)
+  at border-radius() (/Users/tj/Projects/stylus/examples/error.styl:5)
+  at "body" (/Users/tj/Projects/stylus/examples/error.styl:10)
+{% endhighlight %}
+
+
+エラーの行数どころか、どこにシンタックスエラーが発生しているか、原因が何なのかも通知される。非常に強力。
+
+## ツール
+
+- [nib - CSS3 extensions for Stylus](http://visionmedia.github.com/nib/)
+
+TJ Holowaychuk氏本人によるStylusで使えるCSS3拡張。`Gradients`をはじめ現在利用出来るCSS3のプロパティをシンプルに記述できるようにする`Mixins`を追加できる。その他にも`Clearfix`や`position`、`reset`など様々な機能を利用できる。
+
+- [andris9/stylus-sprite](https://github.com/andris9/stylus-sprite)
+
+CSS SpriteをStylus内で生成できる拡張。`libgd`に依存。  
+
+{% highlight css %}
+.block-elm
+  background: url(sprite.png) no-repeat sprite("star.png");
+  width: 25px;
+  height: 25px;
+{% endhighlight %}
+
+
+このような記述を
+
+{% highlight css %}
+.block_elm{
+  background: url(sprite.png) no-repeat -25px -78px;
+  width: 25px;
+  height: 25px;
+}
+{% endhighlight %}
+
+自動で上記のように処理できる。
+
+## シンタックス
+
+近い将来、[Stylus](http://learnboost.github.com/stylus/)の全文を翻訳する予定です。7月以降着手。
+
+

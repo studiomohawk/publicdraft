@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<link rel="hub" href="https://pubsubhubbub.appspot.com"/>
-	<title>Public Draft | Just writing down what I've found</title>
+	<title>Public Draft | Just writing down what I've found and collected</title>
 	<link href="http://publicdraft.studiomohawk.com/atom.xml" rel="self"/>
 	<link href="http://publicdraft.studiomohawk.com"/>
-	<updated>2012-04-28T20:34:18+09:00</updated>
+	<updated>2012-06-06T00:35:30+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
@@ -13,14 +13,13 @@
 	
 		<entry>
 			<title>Sublime Text 2</title>
-			<link href="http://publicdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2/"/>
-			<updated></updated>
-			<id>http://publicdraft.studiomohawk.com/2012/04/14/01-02-sublimetext2</id>
+			<link href="http://publicdraft.studiomohawk.com/research/2012/04/14/01-02-sublimetext2/"/>
+			<updated>2012-06-05 09:13:51 +0900</updated>
+			<id>http://publicdraft.studiomohawk.com/research/2012/04/14/01-02-sublimetext2</id>
 			<content type="html">
 				&lt;h2&gt;インストール&lt;/h2&gt;
 
-&lt;p&gt;まずは&lt;strong&gt;インストール&lt;/strong&gt;から。&lt;br /&gt;
-Sublime Text 2はかなりアクティブに更新されているのでdev buildをインストールして最新機能を使えるようにしておこう。&lt;br /&gt;
+&lt;p&gt;dev buildをインストールして最新機能を使えるようにしておこう。&lt;br /&gt;
 &lt;a href=&quot;http://www.sublimetext.com/dev&quot;&gt;Sublime Text 2 - Dev Builds&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;プラグインをインストール&lt;/h2&gt;
@@ -40,17 +39,17 @@ Package ControlはControl + Shift + pでCommand Palleteを立ち上げて、inst
 するとPackage Control: Install Packageのオプションがハイライトされるのでエンター。&lt;br /&gt;
 探しているプラグイン名をタイプしてエンターすればプラグインのインストールが開始される。&lt;/p&gt;
 
-&lt;p&gt;Command PalleteからでもPackage Controlで管理されているプラグインを一覧できるが、若干読みづらいと思うのでウェブ上で登録されているプラグインをみることができる&lt;a href=&quot;http://wbond.net/sublime_packages/community&quot;&gt;こちら&lt;/a&gt;を参考に。現時点で288のプラグインが登録されている。&lt;/p&gt;
+&lt;p&gt;Command PalleteからでもPackage Controlで管理されているプラグインを一覧できるが、若干読みづらいと思うのでウェブ上で登録されているプラグインをみることができる&lt;a href=&quot;http://wbond.net/sublime_packages/community&quot;&gt;こちら&lt;/a&gt;を参考に。現時点で411のプラグインが登録されている。&lt;/p&gt;
 
 &lt;h2&gt;ショートカット&lt;/h2&gt;
 
 &lt;h3&gt;覚えておきたいショートカット&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Control + Shift + p / Command Palleteを立ち上げる  &lt;/li&gt;
+  &lt;li&gt;Control + Shift + p / Command Paletteを立ち上げる  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Command PalleteからSublime Text 2の様々な機能やスニペットを検索できます。Package Controlもここからアクセスできる。&lt;/p&gt;
+&lt;p&gt;Command PaletteからSublime Text 2の様々な機能やスニペットを検索できます。Package Controlもここからアクセスできる。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Command + p / ファイルファインダを立ち上げる&lt;/li&gt;
@@ -95,23 +94,57 @@ Package ControlはControl + Shift + pでCommand Palleteを立ち上げて、inst
 &lt;p&gt;&lt;a href=&quot;https://github.com/SublimeText/Tag&quot;&gt;Tag&lt;/a&gt; プラグイン導入済みの場合。&lt;br /&gt;
 選択範囲でHTMLタグをフォーマットする。&lt;/p&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/1207002&quot;&gt;便利なショートカット集 @gist&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;念のため以下にMacのショートカットキーのシンボルを。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- &amp;amp;#8984; Command キー
+- &amp;amp;#8997; Alt / Option キー
+- &amp;amp;#8963; Control キー
+- &amp;amp;#8679; Shift キー
+- &amp;amp;#8617; Return / Enter キー
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h2&gt;設定&lt;/h2&gt;
 
 &lt;p&gt;Sublime Text 2ではEmacsやVimのように設定ファイルを編集することで設定を変更できる。Preferences → Settings - Defaultを開いて、変更したい部分をコピーしてから、Preferences → Settings - Userにペーストして設定を変更しよう。  &lt;/p&gt;
 
 &lt;p&gt;同様にキーバインドもPreferences → Key Bindings - Defaultを開いて、変更したい部分をコピーして、Preferences → Key Bindings - Userにペーストして設定を変更できる。&lt;/p&gt;
 
-&lt;p&gt;どちらの設定ファイルもJSON形式で書かれているので	編集はそれほど難しくない。&lt;/p&gt;
+&lt;p&gt;どちらの設定ファイルもJSON形式で書かれているので編集はそれほど難しくない。&lt;/p&gt;
 
 &lt;h2&gt;おすすめプラグイン&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeLinter/SublimeLinter&quot;&gt;SublimeLinter&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sublime Text 2のプラグインの中で最も重宝するのがこのプラグイン。&lt;br /&gt;
+SublimeLinterはcsslint、jshint、PythonやRubyなどのlintプログラムをリアルタイムに実行してくれる。Package Controlからインストールできる。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/BoundInCode/AutoFileName&quot;&gt;AutoFileName&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;その名の通りファイル名の自動補完をSublime Text 2のデフォルトの自動補完機能に追加するプラグイン。&lt;br /&gt;
+ちなみに自動補完の起動はcontrol + space&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/sublimator/sublime-2-zencoding&quot;&gt;Zen Coding&lt;/a&gt;  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;HTML、CSSをより早く記述するのに便利なZen Coding。Package Controlから直接はインストールできなかったので、Package Control: add repositoryからhttps://bitbucket.org/sublimator/sublime-2-zencodingを追加してインストールした。  &lt;/p&gt;
+&lt;p&gt;HTML、CSSをより早く記述するのに便利なZen Coding。Package Controlから直接はインストールできなかったので、Package Control: add repositoryからhttps://bitbucket.org/sublimator/sublime-2-zencodingを追加してインストール。  &lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;div.text&lt;/code&gt;のようないつもの記述をtabでExpandしてくれる。他のコマンドについては~/Library/Application\ Support/Sublime\ Text\ 2/Packages/ZenCodingのkeymapを確認できる。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/jQuery&quot;&gt;jQuery&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;jQueryの関数達を自動補完してくれる。&lt;br /&gt;
+jQueryチームのメンバー数名が作成したというだけあって信頼できるプラグイン。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/wbond/sublime_prefixr&quot;&gt;Sublime Prefixr&lt;/a&gt;  &lt;/li&gt;
@@ -119,7 +152,7 @@ Package ControlはControl + Shift + pでCommand Palleteを立ち上げて、inst
 
 &lt;p&gt;CSS3のブラウザベンダープリフィックスを補完してくれるウェブサービス&lt;a href=&quot;http://prefixr.com/&quot;&gt;Nettuts+ Prefixr&lt;/a&gt;を直接利用できる。Package Controlからインストール可能。&lt;/p&gt;
 
-&lt;p&gt;Command + Control + x で実行。&lt;/p&gt;
+&lt;p&gt;補完したいルールセットを選択してCommand + Control + x で実行。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/Tag&quot;&gt;Tag&lt;/a&gt;  &lt;/li&gt;
@@ -128,6 +161,30 @@ Package ControlはControl + Shift + pでCommand Palleteを立ち上げて、inst
 &lt;p&gt;HTMLに関する様々な機能を拡張するプラグイン。&lt;br /&gt;
 スラッシュで自動的にタグを閉じる、タグのインデントなどを追加。
 インストールはPackage Controlから。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/robcowie/SublimeTODO&quot;&gt;SublimeTODO&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;TODOやNOTE、FIXMEなどのような文字列をコメント内に残しておいて、それらのみを検索し別ウィンドウで開いてナビゲーションできる。&lt;br /&gt;
+利用には若干設定が必要だが&lt;a href=&quot;https://gist.github.com/2049887&quot;&gt;こちら&lt;/a&gt;を参照してほしい。Preferences - Settings Userから設定ファイルを開いて、リンク先の11行目から25行目までをコピーして、既存の設定の後ろに追加。&lt;/p&gt;
+
+&lt;p&gt;Control + pからShow TODOsとタイプするとShow TODOs: Project and open filesという補完があるはずなのでエンターで別ウィンドウで結果が表示される。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jdc0589/JsFormat&quot;&gt;JsFormat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;JavaScriptのフォーマットを&lt;a href=&quot;http://jsbeautifier.org/&quot;&gt;http://jsbeautifier.org/&lt;/a&gt;のツールで整えてくれるプラグイン。&lt;br /&gt;
+readmeにはcontrol + Option + fでプラグインを利用出来るとあるが、Tagプラグインと競合していて動作しないのでCommand PaletteからFormat: Javascriptで実行している。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://net.tutsplus.com/articles/news/introducing-nettuts-fetch/&quot;&gt;Nettuts+ Fetch&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nettus+が作成したFetchプラグイン。&lt;br /&gt;
+jQueryやnormalize.cssなどの単体ファイルの最新版をいつもgithubに取得しに行っていたり、自分で作成したパッケージをzipにしていたりする場合はそれらを設定しておけばこのプラグインで取得出来る。&lt;br /&gt;
+zipファイルは自動で解凍される。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/facelessuser/BracketHighlighter&quot;&gt;BracketHighlighter&lt;/a&gt;&lt;/li&gt;
@@ -155,7 +212,8 @@ Package ControlはControl + Shift + pでCommand Palleteを立ち上げて、inst
 &lt;/ul&gt;
 
 &lt;p&gt;Sidebarに削除、実行などの機能を追加するプラグイン。&lt;br /&gt;
-Packageまわりは少しバグがあるようで、ほぼ動作しない様子だがかなり便利。&lt;br /&gt;
+ファイルを別のアプリケーションで開く、という設定もできる。
+Packageまわりは少しバグがあるようでほぼ動作しない様子だがかなり便利。&lt;br /&gt;
 こちらもPackage Controlから。&lt;/p&gt;
 
 &lt;ul&gt;
@@ -182,42 +240,12 @@ Package Controlから。&lt;/p&gt;
 私の環境ではPackage Controlからはインストールできなかったので、直接PackageへCloneした。&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/spadgos/sublime-AsAbove&quot;&gt;As Above&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;カーソルの真上にいる文字をコピーするプラグイン。&lt;br /&gt;
-Control + Shift + ‘のショートカットキーで1文字づつコピーする。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/Open-Include&quot;&gt;Open-Include&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ファイルパスをOption + dで開くプラグイン。&lt;br /&gt;
-画像、動画などをデフォルトアプリで開いてくれる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/TrailingSpaces&quot;&gt;TrailingSpaces&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;行末の空白文字を強調表示、削除するプラグイン。&lt;br /&gt;
-削除はSublime Text 2の設定から&lt;br /&gt;
-    “trim_trailing_white_space_on_save”: true,
-と変更すれば保存と同時に削除される。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/uipoet/sublime-jshint&quot;&gt;sublime-jshint&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;JSHistを実行するプラグイン。動作にはnode 0.6系が必要。&lt;br /&gt;
-Control + jで実行。&lt;/p&gt;
-
-&lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://andrewbrookins.com/tech/make-sublime-text-2-more-like-vim-wrap-code-goto-last-edit-and-more/&quot;&gt;Make Sublime Text 2 More like Vim: Wrap Code, Go To Last Edit, and More&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Vimで使えるちょっと便利なコマンドをエミュレートするプラグイン達。&lt;br /&gt;
 好きなものを選んで利用中。&lt;br /&gt;
-Package Controlからはインストールできないので、Packagesディレクトリに直接cloneしました。&lt;/p&gt;
+Package Controlからはインストールできないので、Packagesディレクトリに直接cloneした。&lt;/p&gt;
 
 &lt;h2&gt;Tips&lt;/h2&gt;
 
@@ -225,7 +253,7 @@ Package Controlからはインストールできないので、Packagesディレ
   &lt;li&gt;Vim風キーバインドに変換する&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Command PalleteにてPackage Control: Enable Packageを選んでエンターしてVintageモードを有効にする。&lt;/p&gt;
+&lt;p&gt;Command PaletteにてPackage Control: Enable Packageを選んでエンターしてVintageモードを有効にする。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;TextMateのカラースキームを利用する&lt;/li&gt;
@@ -245,7 +273,7 @@ packageフォルダ直下に.tmbundleをコピーしてSublime Text 2を再起�
   &lt;li&gt;行番号に移動する&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Control + gでも移動できますが、Command + pから&lt;code&gt;:&lt;/code&gt;を入力し行番号をタイプしても移動できる。&lt;/p&gt;
+&lt;p&gt;Control + gでも移動できるが、Command + pから&lt;code&gt;:&lt;/code&gt;を入力し行番号をタイプしても移動できる。&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;TerminalからSublimeを起動する&lt;/li&gt;
@@ -294,9 +322,9 @@ Sublime Textは閉じたままで作業しよう。&lt;/p&gt;
 	
 		<entry>
 			<title>Build Script using Jake</title>
-			<link href="http://publicdraft.studiomohawk.com/2012/04/07/20-41-jake/"/>
+			<link href="http://publicdraft.studiomohawk.com/research/2012/04/07/20-41-jake/"/>
 			<updated></updated>
-			<id>http://publicdraft.studiomohawk.com/2012/04/07/20-41-jake</id>
+			<id>http://publicdraft.studiomohawk.com/research/2012/04/07/20-41-jake</id>
 			<content type="html">
 				&lt;h2&gt;パッケージ&lt;/h2&gt;
 

@@ -4,12 +4,248 @@
 	<title>Public Draft | Just writing down what I've found and collected</title>
 	<link href="http://publicdraft.studiomohawk.com/atom.xml" rel="self"/>
 	<link href="http://publicdraft.studiomohawk.com"/>
-	<updated>2012-06-06T00:37:37+09:00</updated>
+	<updated>2012-06-07T01:33:03+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
 		<email>cssradar@gmail.com</email>
 	</author>
+	
+		<entry>
+			<title>Grunt: A JavaScript command line build tool</title>
+			<link href="http://publicdraft.studiomohawk.com/research/2012/05/20/grunt-a-javascript-command-line-build-tool/"/>
+			<updated></updated>
+			<id>http://publicdraft.studiomohawk.com/research/2012/05/20/grunt-a-javascript-command-line-build-tool</id>
+			<content type="html">
+				&lt;p&gt;Grunt: JavaScript用タスクベースのコマンドラインビルドツール。  &lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;concat&lt;/code&gt; / ファイルを結合&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;init&lt;/code&gt; / プロジェクトのscaffoldingをテンプレートから作成&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;lint&lt;/code&gt; / &lt;a href=&quot;http://www.jshint.com/&quot;&gt;JSHint&lt;/a&gt;を利用したバリデーション&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;min&lt;/code&gt; / &lt;a href=&quot;https://github.com/mishoo/UglifyJS/&quot;&gt;UglifyJS&lt;/a&gt;による圧縮&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;qunit&lt;/code&gt; / &lt;a href=&quot;http://docs.jquery.com/QUnit&quot;&gt;QUnit&lt;/a&gt;によるテストをヘッドレス&lt;a href=&quot;http://phantomjs.org/&quot;&gt;PhantomJS&lt;/a&gt;を利用して実行&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;server&lt;/code&gt; / ウェブサーバを立ち上げる&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;test&lt;/code&gt; / &lt;a href=&quot;https://github.com/caolan/nodeunit&quot;&gt;nodeunit&lt;/a&gt;を利用したユニットテストを実行&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;watch&lt;/code&gt; / 監視対象のファイルに変更があった場合にタスクを実行する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/cowboy/grunt&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;インストール&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;npm install -g grunt&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;qunit&lt;/code&gt;タスク用にPhantomJSが必要になるがnpmからはインストールができないため、
+&lt;code&gt;brew install phantomjs&lt;/code&gt;と&lt;code&gt;brew&lt;/code&gt;でインストールする。&lt;/p&gt;
+
+&lt;h2&gt;使い方&lt;/h2&gt;
+
+&lt;p&gt;gruntは実行したディレクトリ内の&lt;code&gt;grunt.js&lt;/code&gt;というファイルを検索、なければ親ディレクトリと見つけるまで継続して検索し続ける。&lt;br /&gt;
+&lt;code&gt;grunt.js&lt;/code&gt;にはプロジェクトの設定、呼び出すgruntのプラグインやタスクフォルダの設定、タスク、ヘルパそのものを記述する。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;ベーシックなgrunt.jsファイルの例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// プロジェクトの設定&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;lint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;lib/**/*.js&amp;#39;&amp;#39;test/**/*.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;jshint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// 呼び出すgruntのプラグインやタスクフォルダの設定&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-sample&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;c1&quot;&gt;// デフォルトタスク&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;lint sample&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/cowboy/grunt-jquery-example/blob/master/grunt.js&quot;&gt;あらかじめ設定されているjQueryプロジェクトのgrunt.js例&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;プラグイン&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib&quot;&gt;grunt-contrib&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;gruntによく使うタスクを追加する。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;clean&lt;/code&gt; / ファイル、フォルダを削除&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;coffee&lt;/code&gt; / CoffeeScriptをJavaScriptにコンパイル&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;handlebars&lt;/code&gt; / handlebarsのテンプレートをコンパイル&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;jade&lt;/code&gt; / jadeテンプレートをHTMLにコンパイル&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;jst&lt;/code&gt; / underscoreのテンプレートをコンパイル&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;less&lt;/code&gt; / lessファイルをCSSにコンパイル&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;mincss&lt;/code&gt; / CSSを圧縮&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;stylus&lt;/code&gt; / StylusファイルをCSSにコンパイル&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;zip&lt;/code&gt; / ファイル、フォルダをzip圧縮&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-contrib&lt;/code&gt;&lt;br /&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-contrib');&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/backbone-boilerplate/grunt-bbb&quot;&gt;backbone-boilerplate/grunt-bbb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Backbone Boilerplateフレームワークツール。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install -g bbb&lt;/code&gt;
+使い方: &lt;code&gt;bbb init&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jzaefferer/grunt-css&quot;&gt;grunt-css&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;cssmin&lt;/code&gt;、&lt;code&gt;csslint&lt;/code&gt;という2つのタスクを追加できる。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-css&lt;/code&gt;&lt;br /&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-css');&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/sindresorhus/grunt-recess&quot;&gt;grunt-recess&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Twitterが採用しているスタイルガイドチェッカ&lt;a href=&quot;https://github.com/twitter/recess&quot;&gt;recess&lt;/a&gt;を利用出来る。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-recess&lt;/code&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-recess');&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;lint、LESSのコンパイル、結合タスクの例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;recess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;&amp;#39;src/main.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;s1&quot;&gt;&amp;#39;src/component.css&amp;#39;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/combined.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/asciidisco/grunt-requirejs&quot;&gt;grunt-requirejs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://requirejs.org/&quot;&gt;Require.js&lt;/a&gt;をgruntでビルドするタスクを追加。&lt;code&gt;r.js&lt;/code&gt;オプティマイザーの利用も可。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-requirejs&lt;/code&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-requirejs');&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;requirejs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;appDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;src&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;underscore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;../vendor/underscore&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;jquery&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;../vendor/jquery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;backbone&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;../vendor/backbone&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;pragmas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;doExclude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;skipModuleInsertion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;optimizeAllPluginResources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;findNestedDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jharding/grunt-less&quot;&gt;grunt-less&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;LESSをCSSにコンパイル。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-less&lt;/code&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-less');&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/jharding/grunt-exec&quot;&gt;grunt-exec&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Gruntからシェルコマンドを実行。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-exec&lt;/code&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-exec');&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;remove_logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rm -f *.log&amp;#39;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;list_files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ls -l **&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/webxl/grunt-reload&quot;&gt;grunt-reload&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;gruntnのデフォルト&lt;code&gt;watch&lt;/code&gt;タスクで指定したファイルの変更に合わせてブラウザのリロードを行う。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-reload&lt;/code&gt;
+タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-reload');&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/pifantastic/grunt-s3&quot;&gt;grunt-s3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Amazon S3 アップロード/ダウンロード。&lt;/p&gt;
+
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-s3&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s3.put&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/my-app-1.0.0.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;archive/my-app-1.0.0.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;dance!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;download&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s3.pull&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/my-app-0.9.9.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;local/my-app-0.9.9.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s3.delete&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/my-app-0.9.9.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+
+				&lt;hr /&gt;
+				&lt;h5&gt;Elsewhere&lt;/h5&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
+				&lt;/ul&gt;
+			</content>
+		</entry>
 	
 		<entry>
 			<title>Sublime Text 2</title>

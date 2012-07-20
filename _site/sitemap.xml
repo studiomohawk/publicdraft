@@ -6,8 +6,13 @@
 		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
 <loc>http://publicdraft.studiomohawk.com</loc>
-	<lastmod>2012-06-07T01:33:03+09:00</lastmod>
+	<lastmod>2012-07-16T13:38:54+09:00</lastmod>
 	<priority>1.0</priority>
+</url>
+
+<url>
+	<loc>http://publicdraft.studiomohawk.com/research/2012/07/16/docpad/</loc>
+	<lastmod>2012-07-16T12:50:23+09:00</lastmod>
 </url>
 
 <url>

@@ -136,7 +136,7 @@
 
 <p>Backbone Boilerplateフレームワークツール。</p>
 
-<p>インストール: <code>npm install -g bbb</code>
+<p>インストール: <code>npm install -g bbb</code><br />
 使い方: <code>bbb init</code></p>
 
 <ul>
@@ -154,7 +154,7 @@
 
 <p>Twitterが採用しているスタイルガイドチェッカ<a href="https://github.com/twitter/recess">recess</a>を利用出来る。</p>
 
-<p>インストール: <code>npm install grunt-recess</code>
+<p>インストール: <code>npm install grunt-recess</code><br />
 タスクのロード: <code>grunt.loadNpmTasks('grunt-recess');</code></p>
 
 <p><strong>lint、LESSのコンパイル、結合タスクの例</strong></p>
@@ -180,7 +180,7 @@
 
 <p><a href="http://requirejs.org/">Require.js</a>をgruntでビルドするタスクを追加。<code>r.js</code>オプティマイザーの利用も可。</p>
 
-<p>インストール: <code>npm install grunt-requirejs</code>
+<p>インストール: <code>npm install grunt-requirejs</code><br />
 タスクのロード: <code>grunt.loadNpmTasks('grunt-requirejs');</code></p>
 
 <div class="highlight"><pre><code class="js"><span class="nx">requirejs</span><span class="o">:</span> <span class="p">{</span>
@@ -208,7 +208,7 @@
 
 <p>LESSをCSSにコンパイル。</p>
 
-<p>インストール: <code>npm install grunt-less</code>
+<p>インストール: <code>npm install grunt-less</code><br />
 タスクのロード: <code>grunt.loadNpmTasks('grunt-less');</code></p>
 
 <ul>
@@ -217,7 +217,7 @@
 
 <p>Gruntからシェルコマンドを実行。</p>
 
-<p>インストール: <code>npm install grunt-exec</code>
+<p>インストール: <code>npm install grunt-exec</code><br />
 タスクのロード: <code>grunt.loadNpmTasks('grunt-exec');</code></p>
 
 <div class="highlight"><pre><code class="js"><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
@@ -251,23 +251,60 @@
 
 <p>インストール: <code>npm install grunt-s3</code></p>
 
-<div class="highlight"><pre><code class="js"><span class="kd">var</span> <span class="nx">upload</span> <span class="o">=</span> <span class="nx">grunt</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;s3.put&#39;</span><span class="p">,</span> <span class="s1">&#39;dist/my-app-1.0.0.tar.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;archive/my-app-1.0.0.tar.gz&#39;</span><span class="p">);</span>
+<div class="highlight"><pre><code class="js"><span class="nx">grunt</span><span class="p">.</span><span class="nx">initConfig</span><span class="p">({</span>
 
-<span class="nx">upload</span>
-  <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">msg</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;dance!&#39;</span><span class="p">);</span>
-  <span class="p">});</span>
+  <span class="nx">s3</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;YOUR KEY&#39;</span><span class="p">,</span>
+    <span class="nx">secret</span><span class="o">:</span> <span class="s1">&#39;YOUR SECRET&#39;</span><span class="p">,</span>
+    <span class="nx">bucket</span><span class="o">:</span> <span class="s1">&#39;my-bucket&#39;</span><span class="p">,</span>
+    <span class="nx">access</span><span class="o">:</span> <span class="s1">&#39;public-read&#39;</span><span class="p">,</span>
 
-<span class="kd">var</span> <span class="nx">download</span> <span class="o">=</span> <span class="nx">grunt</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;s3.pull&#39;</span><span class="p">,</span> <span class="s1">&#39;dist/my-app-0.9.9.tar.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;local/my-app-0.9.9.tar.gz&#39;</span><span class="p">);</span>
+    <span class="c1">// Files to be uploaded.</span>
+    <span class="nx">upload</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;important_document.txt&#39;</span><span class="p">,</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;documents/important.txt&#39;</span><span class="p">,</span>
+        <span class="nx">gzip</span><span class="o">:</span> <span class="kc">true</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;passwords.txt&#39;</span><span class="p">,</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;documents/ignore.txt&#39;</span><span class="p">,</span>
 
-<span class="nx">download</span><span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">grunt</span><span class="p">.</span><span class="nx">helper</span><span class="p">(</span><span class="s1">&#39;s3.delete&#39;</span><span class="p">,</span> <span class="s1">&#39;dist/my-app-0.9.9.tar.gz&#39;</span><span class="p">);</span>
+        <span class="c1">// These values will override the above settings.</span>
+        <span class="nx">bucket</span><span class="o">:</span> <span class="s1">&#39;some-specific-bucket&#39;</span><span class="p">,</span>
+        <span class="nx">access</span><span class="o">:</span> <span class="s1">&#39;authenticated-read&#39;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="c1">// Wildcards are valid *for uploads only* until I figure out a good implementation</span>
+        <span class="c1">// for downloads.</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;documents/*.txt&#39;</span><span class="p">,</span>
+
+        <span class="c1">// But if you use wildcards, make sure your destination is a directory.</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;documents/&#39;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+
+    <span class="c1">// Files to be downloaded.</span>
+    <span class="nx">download</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;documents/important.txt&#39;</span><span class="p">,</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;important_document_download.txt&#39;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;garbage/IGNORE.txt&#39;</span><span class="p">,</span>
+        <span class="nx">dest</span><span class="o">:</span> <span class="s1">&#39;passwords_download.txt&#39;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+
+    <span class="nx">del</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;documents/launch_codes.txt&#39;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;documents/backup_plan.txt&#39;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
 </div>
@@ -305,6 +342,8 @@
 						
 						<span class="page-nav-item left"><a class="internal" rel="prev" href="/research/2012/04/14/01-02-sublimetext2/" title="	View Sublime Text 2">&larr; View previous article</a></span>
 						
+						
+						<span class="page-nav-item right"><a class="internal" rel="next"	href="/research/2012/07/16/docpad/" title="	View DocPad">View next article &rarr;</a></span>
 						
 					</nav><!-- /.page-nav-bottom -->
 				</div><!-- group -->

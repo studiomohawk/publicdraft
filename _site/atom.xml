@@ -4,12 +4,193 @@
 	<title>Public Draft | Just writing down what I've found and collected</title>
 	<link href="http://publicdraft.studiomohawk.com/atom.xml" rel="self"/>
 	<link href="http://publicdraft.studiomohawk.com"/>
-	<updated>2012-06-07T01:33:03+09:00</updated>
+	<updated>2012-07-16T13:38:54+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
 		<email>cssradar@gmail.com</email>
 	</author>
+	
+		<entry>
+			<title>DocPad</title>
+			<link href="http://publicdraft.studiomohawk.com/research/2012/07/16/docpad/"/>
+			<updated></updated>
+			<id>http://publicdraft.studiomohawk.com/research/2012/07/16/docpad</id>
+			<content type="html">
+				&lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad&quot;&gt;DocPad&lt;/a&gt;はnode.jsで動作する静的HTMLファイルジェネレータ。&lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt;のnode.jsバージョン。&lt;/p&gt;
+
+&lt;h2&gt;インストール&lt;/h2&gt;
+
+&lt;p&gt;(node.jsはインストールされているとして)  &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;npm install -g -f docpad@6.2&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;docpad install&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt;が必要であれば適宜。&lt;/p&gt;
+
+&lt;p&gt;適当なディレクトリを作成して、&lt;br /&gt;
+&lt;code&gt;docpad run&lt;/code&gt;&lt;br /&gt;
+とすると&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;Which skeleton will you use?
+  1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; HTML5 Boilerplate
+  2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Website
+  3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Kitchensink
+  4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Hogan
+  5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; No Skeleton
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;というメッセージが表示される。大抵の場合は1か、5を選択することになる。&lt;br /&gt;
+DocPadで何ができるのか実際に動かしてみたいという場合は3を選ぶといい。&lt;br /&gt;
+DocPadは&lt;code&gt;src&lt;/code&gt;というディレクトリに&lt;code&gt;documents&lt;/code&gt;、&lt;code&gt;files&lt;/code&gt;、&lt;code&gt;layouts&lt;/code&gt;というサブディレクトリを生成するが、それぞれがどんな役割を持っているか分からない場合は1〜4を選択するといいだろう。&lt;/p&gt;
+
+&lt;p&gt;ちなみに&lt;code&gt;docpad run&lt;/code&gt;はディレクトリに対して1度しか使えない様になっているっぽい。&lt;/p&gt;
+
+&lt;p&gt;この時点で&lt;code&gt;http://localhost:9778/&lt;/code&gt;でDocPadが生成したサイトを閲覧できる。&lt;/p&gt;
+
+&lt;h2&gt;プラグイン&lt;/h2&gt;
+
+&lt;p&gt;DocPadにはすでに&lt;a href=&quot;https://github.com/bevry/docpad/wiki/Plugins&quot;&gt;結構な数のプラグイン&lt;/a&gt;が存在している。&lt;/p&gt;
+
+&lt;p&gt;プラグインのインストールは&lt;code&gt;docpad run&lt;/code&gt;を実行したディレクトリに&lt;code&gt;cd&lt;/code&gt;して&lt;br /&gt;
+&lt;code&gt;npm install -f docpad-plugin-プラグイン名&lt;/code&gt;&lt;br /&gt;
+としてインストール。&lt;br /&gt;
+例えばstylusのプラグインであれば&lt;br /&gt;
+&lt;code&gt;npm install -f docpad-plugin-stylus&lt;/code&gt;&lt;br /&gt;
+とする。&lt;/p&gt;
+
+&lt;p&gt;以下は個人的に使いそうなプラグイン達。細かい説明はそれぞれのReadmeを読んでほしい。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/stylus/&quot;&gt;stylus&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/markdown/&quot;&gt;markdown&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/jade/&quot;&gt;jade&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/associated-files&quot;&gt;associated-files&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/cleanurls/&quot;&gt;cleanurls&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/feedr/&quot;&gt;feedr&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/partials/&quot;&gt;partials&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/pygments/&quot;&gt;pygments&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;CLI&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;docpad cli&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;docpadのコマンドを利用できる。以下のコマンドを叩くのに利用。&lt;br /&gt;
+このコマンドを実行した後は以下のコマンドから&lt;code&gt;docpad&lt;/code&gt;が必要なくなる。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;docpad generate&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;HTMLを生成。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;docpad watch&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;ファイルの変更を監視、変更に応じてHTMLを生成。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;server&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;プレビュー用のサーバを立ち上げる。&lt;/p&gt;
+
+&lt;h2&gt;src/documents、src/layouts、src/files&lt;/h2&gt;
+
+&lt;h3&gt;src/layouts&lt;/h3&gt;
+
+&lt;p&gt;このディレクトリにはテンプレートにあたるファイルを格納する。&lt;br /&gt;
+ecoというテンプレートエンジンを利用している場合は、&lt;code&gt;[layout-name].html.eco&lt;/code&gt;という名前でファイルを保存する。&lt;/p&gt;
+
+&lt;p&gt;例えばデフォルトテンプレートを作る場合は&lt;br /&gt;
+&lt;code&gt;default.html.eco&lt;/code&gt;となる。&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= @document.title or &amp;quot;Joe Doe&amp;#39;s Site&amp;quot; %&amp;gt;/title&amp;gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/styles/style.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;logo&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;John Doe loves animals&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%- @content %&amp;gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;Copyright 2012 John Doe.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;&amp;lt;%- @content %&amp;gt;&lt;/code&gt;にコンテンツが挿入される。&lt;/p&gt;
+
+&lt;h3&gt;src/files&lt;/h3&gt;
+
+&lt;p&gt;CSSやJavaScript、画像などを格納するためのディレクトリ。  &lt;/p&gt;
+
+&lt;p&gt;例えば&lt;code&gt;src/files/styles/style.css&lt;/code&gt;というファイルは&lt;code&gt;out/styles/style.css&lt;/code&gt;というディレクトリに出力される。&lt;code&gt;out&lt;/code&gt;ディレクトリが生成済みのファイル群が格納される。&lt;/p&gt;
+
+&lt;h3&gt;src/documents&lt;/h3&gt;
+
+&lt;p&gt;このディレクトリにコンテンツを格納する。&lt;br /&gt;
+&lt;code&gt;src/documents&lt;/code&gt;に&lt;code&gt;index.html&lt;/code&gt;というファイルを作成したとして、&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;---
+layout: default
+title: &amp;quot;John Doe loves animals&amp;quot;
+---
+
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;article&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;My favorite animal : the cat !&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;written on &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2012-05-19&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Who doesn&amp;#39;t love cats ? &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/article&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;のように記述すればいい。  &lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;---&lt;/code&gt;で囲まれている部分はメタデータを指定する箇所。&lt;br /&gt;
+&lt;code&gt;layout&lt;/code&gt;はテンプレートを指定し、&lt;code&gt;title&lt;/code&gt;はタイトルを指定する。&lt;br /&gt;
+ほかにも&lt;code&gt;tags&lt;/code&gt;、&lt;code&gt;content&lt;/code&gt;、&lt;code&gt;ignored&lt;/code&gt;、&lt;code&gt;date&lt;/code&gt;などを利用できる。&lt;br /&gt;
+さらに自分でカスタムすることも可能。&lt;/p&gt;
+
+&lt;p&gt;先ほどの&lt;code&gt;src/layouts&lt;/code&gt;で示した&lt;code&gt;&amp;lt;%- @content %&amp;gt;&lt;/code&gt;に上記のコンテンツが挿入される。&lt;/p&gt;
+
+&lt;p&gt;以上に加えて、&lt;br /&gt;
+DocPadが提供している&lt;a href=&quot;https://github.com/bevry/docpad/wiki/Beginner-Guide&quot;&gt;ビギナーガイド&lt;/a&gt;にかなり細かい部分まで解説してある。&lt;/p&gt;
+
+
+				&lt;hr /&gt;
+				&lt;h5&gt;Elsewhere&lt;/h5&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
+					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
+				&lt;/ul&gt;
+			</content>
+		</entry>
 	
 		<entry>
 			<title>Grunt: A JavaScript command line build tool</title>
@@ -100,7 +281,7 @@
 
 &lt;p&gt;Backbone Boilerplateフレームワークツール。&lt;/p&gt;
 
-&lt;p&gt;インストール: &lt;code&gt;npm install -g bbb&lt;/code&gt;
+&lt;p&gt;インストール: &lt;code&gt;npm install -g bbb&lt;/code&gt;&lt;br /&gt;
 使い方: &lt;code&gt;bbb init&lt;/code&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -118,7 +299,7 @@
 
 &lt;p&gt;Twitterが採用しているスタイルガイドチェッカ&lt;a href=&quot;https://github.com/twitter/recess&quot;&gt;recess&lt;/a&gt;を利用出来る。&lt;/p&gt;
 
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-recess&lt;/code&gt;
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-recess&lt;/code&gt;&lt;br /&gt;
 タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-recess');&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;lint、LESSのコンパイル、結合タスクの例&lt;/strong&gt;&lt;/p&gt;
@@ -144,7 +325,7 @@
 
 &lt;p&gt;&lt;a href=&quot;http://requirejs.org/&quot;&gt;Require.js&lt;/a&gt;をgruntでビルドするタスクを追加。&lt;code&gt;r.js&lt;/code&gt;オプティマイザーの利用も可。&lt;/p&gt;
 
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-requirejs&lt;/code&gt;
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-requirejs&lt;/code&gt;&lt;br /&gt;
 タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-requirejs');&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;requirejs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -172,7 +353,7 @@
 
 &lt;p&gt;LESSをCSSにコンパイル。&lt;/p&gt;
 
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-less&lt;/code&gt;
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-less&lt;/code&gt;&lt;br /&gt;
 タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-less');&lt;/code&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -181,7 +362,7 @@
 
 &lt;p&gt;Gruntからシェルコマンドを実行。&lt;/p&gt;
 
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-exec&lt;/code&gt;
+&lt;p&gt;インストール: &lt;code&gt;npm install grunt-exec&lt;/code&gt;&lt;br /&gt;
 タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-exec');&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
@@ -215,23 +396,60 @@
 
 &lt;p&gt;インストール: &lt;code&gt;npm install grunt-s3&lt;/code&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s3.put&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/my-app-1.0.0.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;archive/my-app-1.0.0.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;always&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;dance!&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;s3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;YOUR KEY&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;YOUR SECRET&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;my-bucket&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;public-read&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;download&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s3.pull&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/my-app-0.9.9.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;local/my-app-0.9.9.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Files to be uploaded.&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;important_document.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/important.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;gzip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;passwords.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/ignore.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 
-&lt;span class=&quot;nx&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;done&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;helper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;s3.delete&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/my-app-0.9.9.tar.gz&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// These values will override the above settings.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;some-specific-bucket&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;authenticated-read&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Wildcards are valid *for uploads only* until I figure out a good implementation&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// for downloads.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/*.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// But if you use wildcards, make sure your destination is a directory.&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Files to be downloaded.&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/important.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;important_document_download.txt&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;garbage/IGNORE.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;passwords_download.txt&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;del&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/launch_codes.txt&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/backup_plan.txt&amp;#39;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;

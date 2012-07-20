@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ja" itemscope itemtype="http://schema.org/Blog" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml"
+>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  
+  <title itemprop="name" content="DocPad | Public Draft">DocPad | Public Draft | Just writing down what I've found and collected</title>
+  <meta itemprop="description" name="description" property="og:description" content="DocPadはnode.jsで動作する静的HTMLファイルジェネレータ。Jekyllのnode.jsバージョン。 インストール (node.jsはインストールされているとして) npm install -g -f docpad@6.2 docpad install sudoが必要であれば適宜。 適当なディレクトリを作成して、 docpad run とすると Which skeleton will you use? 1) HTML5 Boilerplate 2) Website...">
+  
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://publicdraft.studiomohawk.com">
+  <meta property="og:image" content="http://publicdraft.studiomohawk.com/inazuma-icon-200.png">
+  <meta property="og:site_name" content="Public Draft | Just writing down what I've found and collected">
+
+  <meta name="viewport" content="width=device-width">
+  <link href="http://publicdraft.studiomohawk.com/atom.xml" rel="alternate" title="Public Draft | Just writing down what I've found and collected" type="application/atom+xml">
+  <link rel="stylesheet" href="/style/style.css">
+</head>
+<body>
+<div id="page" class="page page-post">
+<header class="the-header">
+<div class="unit unit-logo">
+	<div class="unit-inner">
+		<div class="mod">
+			<div class="inner">
+				<div class="hd"><p class="logo kilo"><a href="/">Public Draft</a></p></div>
+				<div class="bd"><p class="tagline">Just writing down what I've found and collected</p></div>
+			</div><!-- inner -->
+		</div><!-- mod -->
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</header>
+
+<div role="main" class="body">
+<div class="unit">
+<div class="unit-inner">
+<article class="the-article hentry">
+	<div class="mod">
+		<div class="inner">
+			<div class="hd">
+				<div class="group">
+				
+				<time class="date-pub milli" title="2012-07-16T12:50:23+09:00">
+					<span class="year">12</span>
+					<span class="month">07</span>
+					<span class="day">16</span>
+				</time>
+				
+				<h1 class="post-title">DocPad</h1>
+				</div><!-- group -->
+			</div>
+			<div class="bd">
+				<div class="content">
+					<p><a href="https://github.com/bevry/docpad">DocPad</a>はnode.jsで動作する静的HTMLファイルジェネレータ。<a href="https://github.com/mojombo/jekyll">Jekyll</a>のnode.jsバージョン。</p>
+
+<h2>インストール</h2>
+
+<p>(node.jsはインストールされているとして)  </p>
+
+<p><code>npm install -g -f docpad@6.2</code><br />
+<code>docpad install</code></p>
+
+<p><code>sudo</code>が必要であれば適宜。</p>
+
+<p>適当なディレクトリを作成して、<br />
+<code>docpad run</code><br />
+とすると</p>
+
+<div class="highlight"><pre><code class="sh">Which skeleton will you use?
+  1<span class="o">)</span> HTML5 Boilerplate
+  2<span class="o">)</span> Website
+  3<span class="o">)</span> Kitchensink
+  4<span class="o">)</span> Hogan
+  5<span class="o">)</span> No Skeleton
+</code></pre>
+</div>
+
+<p>というメッセージが表示される。大抵の場合は1か、5を選択することになる。<br />
+DocPadで何ができるのか実際に動かしてみたいという場合は3を選ぶといい。<br />
+DocPadは<code>src</code>というディレクトリに<code>documents</code>、<code>files</code>、<code>layouts</code>というサブディレクトリを生成するが、それぞれがどんな役割を持っているか分からない場合は1〜4を選択するといいだろう。</p>
+
+<p>ちなみに<code>docpad run</code>はディレクトリに対して1度しか使えない様になっているっぽい。</p>
+
+<p>この時点で<code>http://localhost:9778/</code>でDocPadが生成したサイトを閲覧できる。</p>
+
+<h2>プラグイン</h2>
+
+<p>DocPadにはすでに<a href="https://github.com/bevry/docpad/wiki/Plugins">結構な数のプラグイン</a>が存在している。</p>
+
+<p>プラグインのインストールは<code>docpad run</code>を実行したディレクトリに<code>cd</code>して<br />
+<code>npm install -f docpad-plugin-プラグイン名</code><br />
+としてインストール。<br />
+例えばstylusのプラグインであれば<br />
+<code>npm install -f docpad-plugin-stylus</code><br />
+とする。</p>
+
+<p>以下は個人的に使いそうなプラグイン達。細かい説明はそれぞれのReadmeを読んでほしい。</p>
+
+<ul>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/stylus/">stylus</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/markdown/">markdown</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/jade/">jade</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/associated-files">associated-files</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/cleanurls/">cleanurls</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/feedr/">feedr</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/partials/">partials</a></p>
+  </li>
+  <li>
+    <p><a href="https://github.com/bevry/docpad-extras/tree/master/plugins/pygments/">pygments</a></p>
+  </li>
+</ul>
+
+<h2>CLI</h2>
+
+<ul>
+  <li><code>docpad cli</code></li>
+</ul>
+
+<p>docpadのコマンドを利用できる。以下のコマンドを叩くのに利用。<br />
+このコマンドを実行した後は以下のコマンドから<code>docpad</code>が必要なくなる。</p>
+
+<ul>
+  <li><code>docpad generate</code></li>
+</ul>
+
+<p>HTMLを生成。</p>
+
+<ul>
+  <li><code>docpad watch</code></li>
+</ul>
+
+<p>ファイルの変更を監視、変更に応じてHTMLを生成。</p>
+
+<ul>
+  <li><code>server</code></li>
+</ul>
+
+<p>プレビュー用のサーバを立ち上げる。</p>
+
+<h2>src/documents、src/layouts、src/files</h2>
+
+<h3>src/layouts</h3>
+
+<p>このディレクトリにはテンプレートにあたるファイルを格納する。<br />
+ecoというテンプレートエンジンを利用している場合は、<code>[layout-name].html.eco</code>という名前でファイルを保存する。</p>
+
+<p>例えばデフォルトテンプレートを作る場合は<br />
+<code>default.html.eco</code>となる。</p>
+
+<div class="highlight"><pre><code class="html"><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;title&gt;</span><span class="err">&lt;</span>%= @document.title or &quot;Joe Doe&#39;s Site&quot; %&gt;/title&gt;
+  <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/styles/style.css&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/&quot;</span> <span class="na">class=</span><span class="s">&quot;logo&quot;</span><span class="nt">&gt;</span>John Doe loves animals<span class="nt">&lt;/a&gt;</span>
+<span class="err">&lt;</span>%- @content %&gt;
+<span class="nt">&lt;footer&gt;</span>Copyright 2012 John Doe.<span class="nt">&lt;/footer&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre>
+</div>
+
+<p><code>&lt;%- @content %&gt;</code>にコンテンツが挿入される。</p>
+
+<h3>src/files</h3>
+
+<p>CSSやJavaScript、画像などを格納するためのディレクトリ。  </p>
+
+<p>例えば<code>src/files/styles/style.css</code>というファイルは<code>out/styles/style.css</code>というディレクトリに出力される。<code>out</code>ディレクトリが生成済みのファイル群が格納される。</p>
+
+<h3>src/documents</h3>
+
+<p>このディレクトリにコンテンツを格納する。<br />
+<code>src/documents</code>に<code>index.html</code>というファイルを作成したとして、</p>
+
+<div class="highlight"><pre><code class="html">---
+layout: default
+title: &quot;John Doe loves animals&quot;
+---
+
+<span class="nt">&lt;article&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>My favorite animal : the cat !<span class="nt">&lt;/h2&gt;</span>
+
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;date&quot;</span><span class="nt">&gt;</span>written on <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;date&quot;</span><span class="nt">&gt;</span>2012-05-19<span class="nt">&lt;/span&gt;&lt;/div&gt;</span>
+  <span class="nt">&lt;p&gt;</span>Who doesn&#39;t love cats ? <span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/article&gt;</span>
+</code></pre>
+</div>
+
+<p>のように記述すればいい。  </p>
+
+<p><code>---</code>で囲まれている部分はメタデータを指定する箇所。<br />
+<code>layout</code>はテンプレートを指定し、<code>title</code>はタイトルを指定する。<br />
+ほかにも<code>tags</code>、<code>content</code>、<code>ignored</code>、<code>date</code>などを利用できる。<br />
+さらに自分でカスタムすることも可能。</p>
+
+<p>先ほどの<code>src/layouts</code>で示した<code>&lt;%- @content %&gt;</code>に上記のコンテンツが挿入される。</p>
+
+<p>以上に加えて、<br />
+DocPadが提供している<a href="https://github.com/bevry/docpad/wiki/Beginner-Guide">ビギナーガイド</a>にかなり細かい部分まで解説してある。</p>
+
+
+				</div>
+			<div class="mod mod-social">
+	<div class="inner">
+		<div class="bd">
+			<ul class="list-linear">
+				<li>
+					<!-- facebook like -->
+					<div class="fb-like" data-href="http://publicdraft.studiomohawk.com/research/2012/07/16/docpad/" data-send="false" data-layout="button_count" data-width="90" data-show-faces="false" data-font="lucida grande"></div>
+				</li>
+				<li>
+					<!-- twitter -->
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="cssradar" data-lang="en">Tweet</a>
+				</li>
+				<li>
+					<!-- g+ -->
+					<div class="g-plusone" data-size="medium"></div>
+				</li>
+				<li>
+					<!-- twitter -->
+					<a href="https://twitter.com/cssradar" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @cssradar</a>
+				</li>
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+			</div>
+			<div class="ft">
+				<div class="group">
+					<nav class="page-nav-bottom">
+						
+						<span class="page-nav-item left"><a class="internal" rel="prev" href="/research/2012/05/20/grunt-a-javascript-command-line-build-tool/" title="	View Grunt: A JavaScript command line build tool">&larr; View previous article</a></span>
+						
+						
+					</nav><!-- /.page-nav-bottom -->
+				</div><!-- group -->
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+</article>
+</div><!-- unit-inner -->
+</div><!-- unit -->
+</div><!-- body -->
+
+<footer class="the-footer">
+<div class="unit">
+	<div class="unit-inner">
+	
+		<div class="mod mod-home">
+		<div class="inner">
+			<div class="bd">
+				<p class="delta bold"><a href="/"><i class="icon-home"></i> Home</a></p>
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+	
+	<div class="mod mod-question">
+	<div class="inner">
+		<div class="hd">
+			<h4>Questions?</h4>
+		</div>
+		<div class="bd">
+			<p>
+			<a class="zocial github" href="https://github.com/studiomohawk/publicdraft/issues/new" target="_blank">
+      	<span>Ask Me on Github</span>
+      </a>
+			</p>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+	<div class="mod mod-about">
+	<div class="inner">
+		<div class="hd">
+			<h4>About</h4>
+		</div>
+		<div class="bd">
+			<p>
+			斉藤祐也、東京下町出身の現役フロントエンドデベロッパ / ウェブデザイナのリサーチログ。
+			</p>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+	<div class="mod mod-elsewhere">
+	<div class="inner">
+		<div class="hd">
+			<h4>Elsewhere</h4>
+		</div>
+		<div class="bd">
+			<ul class="list-square">
+				<li><a href="http://css.studiomohawk.com/" rel="me" title="CSS Radar">CSS Radar</a> / フロントエンダのためのミニブック</li>
+				<li><a href="http://twitter.com/#!/cssradar" rel="me" title="cssradar@twitter">cssradar@twitter</a> / 1日5件以内でフロントエンドな情報をつぶやきます</li>
+				<li><a href="http://newsletter.studiomohawk.com/" rel="me" title="Newsletter">CSS Radar Newsletter</a> / Twitterで紹介した記事1週間分にサマリを追加して紹介します。</li>
+				<li><a href="http://enja.studiomohawk.com/" rel="me" title="en.ja">en.ja</a> / フロントエンダのための翻訳記事</li>
+				<li><a href="https://github.com/studiomohawk" rel="me" title="github">github</a> / このブログのソースも公開してます</li>
+				<li><a href="http://pinboard.in/u:studiomohawk" rel="me" title="Pinboard">Pinboard</a> / カオスにならないようきちんとモニタ</li>
+				<li><a href="http://500px.com/studiomohawk/photos" rel="me" title="500px">500px</a> / 趣味は写真。Nikon D90ユーザ</li>
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</footer>
+</div><!-- #page -->
+<div id="fb-root"></div><!-- fb needs this -->
+<script src="/script/script.js"></script>
+<!-- end scripts -->
+<script>
+var _gaq=[['_setAccount','UA-61203-19'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+</body>
+</html>

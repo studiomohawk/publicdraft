@@ -79,7 +79,7 @@ gruntによく使うタスクを追加する。
 
 Backbone Boilerplateフレームワークツール。
 
-インストール: `npm install -g bbb`
+インストール: `npm install -g bbb`  
 使い方: `bbb init`
 
 - [grunt-css](https://github.com/jzaefferer/grunt-css)
@@ -93,7 +93,7 @@ Backbone Boilerplateフレームワークツール。
 
 Twitterが採用しているスタイルガイドチェッカ[recess](https://github.com/twitter/recess)を利用出来る。
 
-インストール: `npm install grunt-recess`
+インストール: `npm install grunt-recess`  
 タスクのロード: `grunt.loadNpmTasks('grunt-recess');`
 
 **lint、LESSのコンパイル、結合タスクの例**
@@ -116,7 +116,7 @@ recess: {
 
 [Require.js](http://requirejs.org/)をgruntでビルドするタスクを追加。`r.js`オプティマイザーの利用も可。
 
-インストール: `npm install grunt-requirejs`
+インストール: `npm install grunt-requirejs`  
 タスクのロード: `grunt.loadNpmTasks('grunt-requirejs');`
 
 {% highlight js %}
@@ -142,14 +142,14 @@ requirejs: {
 
 LESSをCSSにコンパイル。
 
-インストール: `npm install grunt-less`
+インストール: `npm install grunt-less`  
 タスクのロード: `grunt.loadNpmTasks('grunt-less');`
 
 - [grunt-exec](https://github.com/jharding/grunt-exec)
 
 Gruntからシェルコマンドを実行。
 
-インストール: `npm install grunt-exec`
+インストール: `npm install grunt-exec`  
 タスクのロード: `grunt.loadNpmTasks('grunt-exec');`
 
 {% highlight js %}
@@ -180,22 +180,59 @@ Amazon S3 アップロード/ダウンロード。
 インストール: `npm install grunt-s3`
 
 {% highlight js %}
-var upload = grunt.helper('s3.put', 'dist/my-app-1.0.0.tar.gz', 'archive/my-app-1.0.0.tar.gz');
+grunt.initConfig({
 
-upload
-  .done(function(msg) {
-    console.log(msg);
-  })
-  .fail(function(err) {
-    console.log(err);
-  })
-  .always(function() {
-    console.log('dance!');
-  });
+  s3: {
+    key: 'YOUR KEY',
+    secret: 'YOUR SECRET',
+    bucket: 'my-bucket',
+    access: 'public-read',
 
-var download = grunt.helper('s3.pull', 'dist/my-app-0.9.9.tar.gz', 'local/my-app-0.9.9.tar.gz');
+    // Files to be uploaded.
+    upload: [
+      {
+        src: 'important_document.txt',
+        dest: 'documents/important.txt',
+        gzip: true
+      },
+      {
+        src: 'passwords.txt',
+        dest: 'documents/ignore.txt',
 
-download.done(function() {
-  grunt.helper('s3.delete', 'dist/my-app-0.9.9.tar.gz');
+        // These values will override the above settings.
+        bucket: 'some-specific-bucket',
+        access: 'authenticated-read'
+      },
+      {
+        // Wildcards are valid *for uploads only* until I figure out a good implementation
+        // for downloads.
+        src: 'documents/*.txt',
+
+        // But if you use wildcards, make sure your destination is a directory.
+        dest: 'documents/'
+      }
+    ],
+
+    // Files to be downloaded.
+    download: [
+      {
+        src: 'documents/important.txt',
+        dest: 'important_document_download.txt'
+      },
+      {
+        src: 'garbage/IGNORE.txt',
+        dest: 'passwords_download.txt'
+      }
+    ],
+
+    del: [
+      {
+        src: 'documents/launch_codes.txt'
+      },
+      {
+        src: 'documents/backup_plan.txt'
+      }
+    ]
+  }
 });
 {% endhighlight %}

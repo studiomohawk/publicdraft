@@ -2,6 +2,7 @@
 layout: post
 title: "Grunt: A JavaScript command line build tool"
 date: 2012-05-20 21:14:24
+byline: "Yuya Saito"
 category: research
 ---
 

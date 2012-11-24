@@ -4,14 +4,8 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		csso: {
 			dist: {
-				src: 'asset/style/style.css',
-				dest: 'asset/style/style.css'
-			}
-		},
-		min: {
-			dist: {
-				src: ['asset/script/script.js'],
-				dest: 'asset/script/script.js'
+				src: 'asset/style.css',
+				dest: 'asset/style.css'
 			}
 		},
 		stylus: {
@@ -39,29 +33,6 @@ module.exports = function(grunt) {
 				server: true
 			}
 		},
-		aws: '<json:grunt-aws.json>',
-		s3: {
-			key: '<%= aws.key %>',
-			secret: '<%= aws.secret %>',
-			bucket: 'publicdraft.studiomohawk.com',
-			access: 'public-read',
-			upload: [
-				{
-					src: '_site/**/*',
-					dest: '.'
-				},
-				{
-					src: '_site/asset/style/*.css',
-					dest: 'asset/style/',
-					gzip: true
-				},
-				{
-					src: '_site/asset/script/*.js',
-					dest: 'asset/script/',
-					gzip: true
-				}
-			]
-		},
 		watch: {
 			css: {
 				files: ['asset/style/*.styl'],
@@ -75,17 +46,16 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-csso');
 	grunt.loadNpmTasks('grunt-img');
 	grunt.loadNpmTasks('grunt-jekyll');
-	grunt.loadNpmTasks('grunt-s3');
 
 	// Default task
 	grunt.registerTask('default', 'watch');
 	// CSS Build task
-	grunt.registerTask('cssbuild', ['stylus','csso']);
+	grunt.registerTask('cssbuild', ['stylus', 'csso']);
 	// JavaScript Build task
-	grunt.registerTask('jsbuild', ['min']);
+	grunt.registerTask('jsbuild', ['concat:js', 'min']);
 	// development task
-	grunt.registerTask('dev', ['jekyll', 'watch']);
+	grunt.registerTask('dev', ['watch']);
 	// depoy task
-	grunt.registerTask('deploy', ['cssbuild','s3']);
+	grunt.registerTask('deploy', ['cssbuild', 'img']);
 
 };

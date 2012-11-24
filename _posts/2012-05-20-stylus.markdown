@@ -3,6 +3,7 @@ layout: post
 title: "Stylus"
 date: 2012-05-20 22:19:42
 category: research
+byline: "Yuya Saito"
 published: false
 ---
 

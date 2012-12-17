@@ -4,7 +4,7 @@
 	<title>Public Draft | Outlining and Researching for the Presentation</title>
 	<link href="http://publicdraft.studiomohawk.com/atom.xml" rel="self"/>
 	<link href="http://publicdraft.studiomohawk.com"/>
-	<updated>2012-12-17T23:56:29+09:00</updated>
+	<updated>2012-12-18T00:00:23+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
@@ -19,7 +19,7 @@
 			<content type="html">
 				&lt;h2&gt;メッセージ&lt;/h2&gt;
 
-&lt;p&gt;Node.js用テンプレートエンジンである[Jade](&lt;a href=&quot;http://jade-lang.com/&quot;&gt;Jade - Template Engine&lt;/a&gt;はHTMLから本当に必要な部分だけを抜き出した言語。そのシンプルながら非常に強力なテンプレートエンジンはモダンウェブ開発に欠かすことが出来ないプロトタイプを作る言語として適している。&lt;br /&gt;
+&lt;p&gt;Node.js用テンプレートエンジンである&lt;a href=&quot;http://jade-lang.com/&quot;&gt;Jade&lt;/a&gt;はHTMLから本当に必要な部分だけを抜き出した言語。そのシンプルながら非常に強力なテンプレートエンジンはモダンウェブ開発に欠かすことが出来ないプロトタイプを作る言語として適している。&lt;br /&gt;
 今回はプロトタイプ言語としてのJadeをJadeの基礎を踏まえて紹介していこう。&lt;/p&gt;
 
 &lt;h2&gt;アウトライン&lt;/h2&gt;

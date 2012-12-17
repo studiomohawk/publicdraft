@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <title itemprop="name" content="Jade as Prototype Language | Public Draft">Jade as Prototype Language | Public Draft | Outlining and Researching for the Presentation</title>
+  <meta itemprop="description" name="description" property="og:description" content="メッセージ Node.js用テンプレートエンジンである[Jade](Jade - Template EngineはHTMLから本当に必要な部分だけを抜き出した言語。そのシンプルながら非常に強力なテンプレートエンジンはモダンウェブ開発に欠かすことが出来ないプロトタイプを作る言語として適している。 今回はプロトタイプ言語としてのJadeをJadeの基礎を踏まえて紹介していこう。 アウトライン JadeはHamlに影響を受けて生まれた言語 Haml / HTML abstraction markup languade JadeはそのHamlに影響を受けたJavaScript実装のテンプレート言語 例: !!! html head title my jade template body h1...">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="">
+	
+  <meta property="og:image" content="http://publicdraft.studiomohawk.com/graph.png">
+  <meta property="og:site_name" content="Public Draft | Outlining and Researching for the Presentation">
+  <meta name="viewport" content="width=device-width">
+  <link href="http://publicdraft.studiomohawk.com/atom.xml" rel="alternate" title="Public Draft | Outlining and Researching for the Presentation" type="application/atom+xml">
+  <link rel="stylesheet" href="/asset/style/master.css">
+</head>
+<body>
+
+<div id="page" class="page page-post">
+<header class="the-header">
+<div class="unit unit-logo">
+	<div class="unit-inner">
+		<div class="mod">
+			<div class="inner">
+				<div class="hd"><p id="logo" class="logo"><a href="/"><span class="logo-public">public</span><span class="logo-ja">draft</span></a></p></div>
+			</div><!-- inner -->
+		</div><!-- mod -->
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</header>
+
+
+<div role="main" class="body">
+<div class="unit">
+<div class="unit-inner">
+<article class="the-article hentry">
+	<div class="mod">
+		<div class="inner">
+			<div class="hd">
+				<div class="group group-title">
+				<h1 class="h2 post-title">Jade as Prototype Language</h1>
+				<p class="byline">Written by: Yuya Saito</p>
+				
+				<time class="date-pub pubdate small" title="2012-12-16T20:20:48+09:00">
+					<span class="label">Published: </span>
+					<span class="month">Dec</span>
+					<span class="day">16</span>
+					<span class="year">2012</span>
+				</time>
+				</div><!-- group -->
+			</div>
+			<div class="bd">
+				<div class="content">
+					<h2>メッセージ</h2>
+
+<p>Node.js用テンプレートエンジンである[Jade](<a href="http://jade-lang.com/">Jade - Template Engine</a>はHTMLから本当に必要な部分だけを抜き出した言語。そのシンプルながら非常に強力なテンプレートエンジンはモダンウェブ開発に欠かすことが出来ないプロトタイプを作る言語として適している。<br />
+今回はプロトタイプ言語としてのJadeをJadeの基礎を踏まえて紹介していこう。</p>
+
+<h2>アウトライン</h2>
+
+<h3>JadeはHamlに影響を受けて生まれた言語</h3>
+
+<ul>
+  <li><a href="http://haml.info/">Haml</a> / HTML abstraction markup languade</li>
+  <li>JadeはそのHamlに影響を受けたJavaScript実装のテンプレート言語</li>
+  <li>例:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>!!!
+html
+  head
+    title my jade template
+  body
+    h1 Hello #{name}
+</pre></div>
+</div>
+</div>
+
+<p>このJadeに<code>{"name": "Bob"}</code>をデータとして渡すと</p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;title&gt;</span>my jade template<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span>Hello Bob<span class="tag">&lt;/h1&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span>
+</pre></div>
+</div>
+</div>
+
+<p>というHTMLに変換される。</p>
+
+<ul>
+  <li>閉じタグ忘れもなく、<code>&lt;&gt;</code>で囲む必要もない</li>
+  <li><code>#id</code>を付与するには: <code>div#id</code></li>
+  <li><code>.class</code>を付与するには: <code>div.class</code></li>
+  <li>複数クラスは: <code>div.class1.class2</code></li>
+  <li>これにIDも付与できる: <code>div#id.class1.class2</code></li>
+  <li><code>div</code>を書くのは面倒？: <code>#id</code>または<code>.class</code>のみで<code>div</code>を補完</li>
+  <li>テキストは: <code>p テキスト</code></li>
+  <li>複数行に渡るテキストは:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>p
+  | foo bar baz
+  | rawr rawr
+  | super cool
+  | go jade go
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>コメントもエレガント: <code>// JavaScriptのコメントと同じ</code></li>
+  <li>入れ子になるタグも:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>ul
+  li.first
+    a(href='#') foo
+  li
+    a(href='#') bar
+  li.last
+    a(href='#') baz
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>属性の指定は: <code>a(href='/login', title='View login page')</code></li>
+  <li>より詳しい文法については → <a href="http://naltatis.github.com/jade-syntax-docs/">Jade Template Syntax Documentation by Example</a>でインタラクティブに学ぶことができる。</li>
+</ul>
+
+<h4>インストール</h4>
+
+<ul>
+  <li><code>npm install jade</code></li>
+  <li>グローバルとしてインストールするには: <code>sudo npm install -g jade</code></li>
+  <li><a href="https://github.com/visionmedia/jade/blob/master/jade.js">jade.js</a>はクライアントサイドでJadeをHTMLに変換できる。</li>
+  <li>Jade内でmarkdownを利用するために以下のどれか1つをインストール。(個人的にはmarkedだとGitHubで採用されている形式が利用できるのでおすすめ)
+    <ul>
+      <li>markdown.js / <code>sudo npm install -g markdown</code></li>
+      <li>node-discount / <code>sudo npm install -g discount</code></li>
+      <li>marked / <code>sudo npm install -g marked</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3>プロトタイプ言語</h3>
+
+<ul>
+  <li>HTMLベースのプロトタイプはデベロッパ向け？</li>
+  <li>Jadeはシンプルで強力 === HTMLをより簡単により早く記述できる。</li>
+  <li>プロトタイプ言語という提案。</li>
+  <li>Jadeをテンプレート言語として使うにはnode.jsが必要。しかし、プロトタイプ専用言語として利用すれば利用シーンが広がる。</li>
+</ul>
+
+<h4>コンテンツファースト時代のデザイン手法</h4>
+
+<ul>
+  <li>Stehen Hay氏は<a href="https://speakerdeck.com/stephenhay/responsive-design-workflow">Responsive Design Workflow</a>にて:
+    <ul>
+      <li>Designing in Text → ワークフローの早い段階でコンテンツとなるテキストをmarkdownを使って構造化のデザインをする手法について紹介している。</li>
+    </ul>
+  </li>
+  <li><strong>Filter</strong> in Jade: markdownをJadeのフィルターとして利用できる</li>
+  <li>markdownはデザイナ、ディレクタ、デベロッパの共通言語として利用できるほどシンプルで、このケースには十分な機能を有している。
+    <ul>
+      <li>見出し、テキスト、リンク、リストなど</li>
+    </ul>
+  </li>
+</ul>
+
+<h4>使い回しができるパーツ</h4>
+
+<ul>
+  <li><strong>Includes</strong> in Jade: </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>./layout.jade
+./includes/
+  ./head.jade
+  ./foot.jade
+</pre></div>
+</div>
+</div>
+
+<p>上記の様なファイル構造だとして   </p>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>html
+  include includes/head
+  body
+    h1 My Site
+    p Welcome to my super amazing site.
+    include includes/foot
+</pre></div>
+</div>
+</div>
+
+<p>このようにあらかじめ作成したコンポーネント群を呼び出すことができる。</p>
+
+<ul>
+  <li>JavaScriptやCSSでも同じ傾向にあるようにJadeを使えばHTMLでもモジュール方式の開発ができることになる。</li>
+  <li>Jonathan Snooks氏は<a href="https://smacss.com/">SMACSS</a>でSassを使ったモジュール方式の開発用に以下のようなディレクトリ構成を提案している:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>./layout/
+  ./grid.scss
+  ./alternate.scss
+./module/
+  ./callout.scss
+  ./bookmarks.scss
+  ./btn.scss
+   ./btn-compose.scss
+./base.scss
+./states.scss
+./site-settings.scss
+./mixins.scss
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>Jadeを使えば非常に近しい構成を作ることが可能だ:</li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>.index.jade
+./includes/
+  ./system/
+    ./head.jade
+    ./foot.jade
+  ./lauout/
+    ./grid.jade
+  ./module/
+    ./btn.jade
+    ./nav.jade
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>デザイナが編集を行うのは<code>index.jade</code>だけで、デベロッパと協力して必要なモジュールを用意してもらえばいい。</li>
+  <li>よく使うパーツがあれば、それを抽象化しモジュールとしてコーディングを行うのはデベロッパに任せればいい。</li>
+  <li>CSSプリプロセッサを利用していれば、この構造に合わせてCSSも用意しておけば関係性を明確にできる。</li>
+</ul>
+
+<h4>ミックスインとテンプレート継承</h4>
+
+<ul>
+  <li>Jadeにもミックスインそして、extendsと似たテンプレート継承がある。  </li>
+  <li>デベロッパはプロトタイプの作成を柔軟に、高速に行うためにこれらの機能を上手に使ってテンプレートを抽象化することが可能。</li>
+</ul>
+
+<h3>テンプレート言語としてのJadeの使い方</h3>
+
+<ul>
+  <li>コマンドラインツールを使ってJadeからHTMLに変換を行う。</li>
+  <li>GUI:
+    <ul>
+      <li><a href="http://livereload.com/">LiveReload</a></li>
+      <li><a href="http://incident57.com/codekit/">CodeKit</a></li>
+    </ul>
+  </li>
+  <li>使うコマンドは1つ: <code>jade --pretty JADE.FILE</code> (動画デモ)</li>
+</ul>
+
+<h3>ProtoJadeライブラリ</h3>
+
+<ul>
+  <li>プロトタイプ言語としてのJadeのベースとなるオープンソースプロジェクト (作成予定)</li>
+  <li>基本機能(草案):
+    <ul>
+      <li><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>をベースに</li>
+      <li>[Twitter Boostrap]にあるUI群をモジュールとして実装</li>
+      <li><a href="http://learnboost.github.com/stylus/">Stylus</a>を利用</li>
+      <li><a href="http://tjholowaychuk.com/post/27984551477/components">Components</a>ライクな構造とモジュール群の管理、拡張</li>
+      <li><a href="http://jacobrask.github.com/styledocco/">StyleDocco</a>を利用してスタイルガイドを作成、プロトタイプライブラリページとする</li>
+    </ul>
+  </li>
+</ul>
+
+<h2>リサーチ</h2>
+
+<ul>
+  <li><a href="http://jade-lang.com/">Jade - Template Engine</a></li>
+  <li><a href="https://github.com/visionmedia/jade#readme">visionmedia/jade · GitHub</a></li>
+  <li><a href="http://naltatis.github.com/jade-syntax-docs/">Jade Template Syntax Documentation by Example</a></li>
+  <li><a href="https://speakerdeck.com/stephenhay/responsive-design-workflow">Responsive Design Workflow // Speaker Deck</a></li>
+  <li><a href="https://smacss.com/">Scalable and Modular Architecture for CSS</a></li>
+</ul>
+
+				</div>
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+</article>
+</div><!-- unit-inner -->
+</div><!-- unit -->
+<div class="unit unit-nav">
+	<div class="unit-inner">
+			<div class="bd">
+				<div class="group">
+					<nav class="page-nav">
+					<ul>
+						
+						<li class="old"><a class="internal" rel="prev" href="/2012/12/16/npm-and-package.json/" title="npm / package.json">&larr;</a></li>
+						
+						
+						</ul>
+					</nav><!-- /.page-nav-bottom -->
+				</div><!-- group -->
+			</div>
+	</div>
+</div>
+</div><!-- body -->
+
+<footer class="the-footer">
+<div class="unit">
+	<div class="unit-inner">
+	
+		<div class="mod mod-home">
+		<div class="inner">
+			<div class="bd">
+				<p><a href="/" class="has-icon"><i class="icon-home"></i> Home</a></p>
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+
+	
+	<div class="mod mod-question">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Questions?</h4>
+		</div>
+		<div class="bd">
+			<p>
+			<a class="has-icon" href="https://github.com/studiomohawk/publicdraft/issues/new">
+				<i class='icon-github'></i> Ask Me on Github
+      </a>
+			</p>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<div class="mod mod-about">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">About</h4>
+		</div>
+    <div class="bd">
+      
+
+<p>勉強会などでプレゼンをする際に必ず私が行うのがアウトラインの作成とリサーチ。<br />
+普段は勉強会への登壇が決まってから作るものですが、Public
+Draftではそのフォーマットの練習およびプレゼンのアイデア集積のため、依頼がないのに作って公開していきます。<br />
+もしも本企画から実際に勉強会への登壇が決まった場合、
+運営側の判断で決まり次第、非公開になるかも知れませんのであらかじめご了承ください。  </p>
+
+<p>本企画のアイデアをベースに私に勉強会での登壇を依頼したい場合はご連絡くださいませ。<br />
+また本企画のアイデアをベースに私の代わりに登壇したい方がいる場合はその旨連絡いただければ。</p>
+
+<p>2012/12/16より新たな編集方針の下、更新を再開しています。旧編集方針の記事については<a href="https://gist.github.com/4301918">こちらに移動しました</a></p>
+
+
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<div class="mod mod-elsewhere">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Elsewhere</h4>
+		</div>
+		<div class="bd">
+			<ul class="list-square">
+				<li><a href="http://twitter.com/#!/cssradar" rel="me" title="cssradar@twitter">cssradar@twitter</a> / 1日5件以内でフロントエンドな情報を共有</li>
+				<li><a href="http://seven.studiomohawk.com/" rel="me" title="Seven">Seven</a> / フロントエンドブックマーク</li>
+        <li><a href="http://enja.studiomohawk.com/" rel="me" title="en.ja">en.ja</a> / フロントエンダのための翻訳記事</li>
+        <li><a href="https://github.com/organizations/enja-oss">en.ja OSS</a> / OSSドキュメント翻訳プロジェクト</li>
+				<li><a href="https://github.com/studiomohawk" rel="me" title="github">github</a> / このブログのソースも公開してます</li>
+				<li><a href="http://pinboard.in/u:studiomohawk" rel="me" title="Pinboard">Pinboard</a> / カオスにならないようきちんとモニタ</li>
+				<li><a href="http://500px.com/studiomohawk/photos" rel="me" title="500px">500px</a> / 趣味は写真。Nikon D90ユーザ</li>
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<p class="madeintokyo">
+	Build by Yuya Saito. <a href="https://twitter.com/cssradar" rel="me" title="Twitter@cssradar">@cssradar</a><br>
+	Made Proudly in Tokyo.
+	</p>
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</footer>
+
+</div><!-- #page -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/asset/script/script.js"></script>
+<!-- end scripts -->
+<script>
+var _gaq=[['_setAccount','UA-61203-19'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+</body>
+</html>
+

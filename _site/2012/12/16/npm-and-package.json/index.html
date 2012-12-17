@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  <title itemprop="name" content="npm / package.json | Public Draft">npm / package.json | Public Draft | Outlining and Researching for the Presentation</title>
+  <meta itemprop="description" name="description" property="og:description" content="メッセージ npm(nodeパッケージマネジャ)とそのパッケージのメタデータを保持するpackage.jsonはnode.jsでの開発だけではなく、フロントエンド開発におけるJavaScriptプロジェクトの管理を行うのに必須となりつつあるツール。 npmとpackage.jsonを使いこなせるようになるとgrunt.jsやbower、そしてJamなどの開発をより加速し、ライブラリ群のマネジメントを楽にするツールもより使いこなせるようになる。 今回は、そのnpmとpackage.jsonについて紹介していこう。 アウトライン npm インストール node.js提供のインストーラに付属 curl https://npmjs.org/install.sh | sh (参考) npmコマンド npm install: パッケージをインストール 使い方は大きく分けて2つ: プロジェクトに対してローカルなインストールを行う(こちらがデフォルト) /npm install &lt;PACKAGE&gt; コマンドラインツールなど用のインストールを行うグローバルがある /npm install...">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="">
+	
+  <meta property="og:image" content="http://publicdraft.studiomohawk.com/graph.png">
+  <meta property="og:site_name" content="Public Draft | Outlining and Researching for the Presentation">
+  <meta name="viewport" content="width=device-width">
+  <link href="http://publicdraft.studiomohawk.com/atom.xml" rel="alternate" title="Public Draft | Outlining and Researching for the Presentation" type="application/atom+xml">
+  <link rel="stylesheet" href="/asset/style/master.css">
+</head>
+<body>
+
+<div id="page" class="page page-post">
+<header class="the-header">
+<div class="unit unit-logo">
+	<div class="unit-inner">
+		<div class="mod">
+			<div class="inner">
+				<div class="hd"><p id="logo" class="logo"><a href="/"><span class="logo-public">public</span><span class="logo-ja">draft</span></a></p></div>
+			</div><!-- inner -->
+		</div><!-- mod -->
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</header>
+
+
+<div role="main" class="body">
+<div class="unit">
+<div class="unit-inner">
+<article class="the-article hentry">
+	<div class="mod">
+		<div class="inner">
+			<div class="hd">
+				<div class="group group-title">
+				<h1 class="h2 post-title">npm / package.json</h1>
+				<p class="byline">Written by: Yuya Saito</p>
+				
+				<time class="date-pub pubdate small" title="2012-12-16T09:58:27+09:00">
+					<span class="label">Published: </span>
+					<span class="month">Dec</span>
+					<span class="day">16</span>
+					<span class="year">2012</span>
+				</time>
+				</div><!-- group -->
+			</div>
+			<div class="bd">
+				<div class="content">
+					<h2>メッセージ</h2>
+
+<p>npm(nodeパッケージマネジャ)とそのパッケージのメタデータを保持するpackage.jsonはnode.jsでの開発だけではなく、フロントエンド開発におけるJavaScriptプロジェクトの管理を行うのに必須となりつつあるツール。  </p>
+
+<p>npmとpackage.jsonを使いこなせるようになると<a href="http://gruntjs.com/">grunt.js</a>や<a href="https://github.com/twitter/bower">bower</a>、そして<a href="http://jamjs.org/">Jam</a>などの開発をより加速し、ライブラリ群のマネジメントを楽にするツールもより使いこなせるようになる。</p>
+
+<p>今回は、そのnpmとpackage.jsonについて紹介していこう。</p>
+
+<h2>アウトライン</h2>
+
+<h3>npm</h3>
+
+<h4>インストール</h4>
+
+<ul>
+  <li><a href="http://nodejs.org/download/">node.js</a>提供のインストーラに付属  </li>
+  <li><code>curl https://npmjs.org/install.sh | sh</code> (<a href="https://npmjs.org/doc/faq.html#How-do-I-update-npm">参考</a>)</li>
+</ul>
+
+<h4>npmコマンド</h4>
+
+<ul>
+  <li>
+    <p><strong><code>npm install</code></strong>: パッケージをインストール</p>
+
+    <ul>
+      <li>
+        <p>使い方は大きく分けて2つ: </p>
+
+        <ul>
+          <li>プロジェクトに対してローカルなインストールを行う(こちらがデフォルト) /<code>npm install &lt;PACKAGE&gt;</code></li>
+          <li>コマンドラインツールなど用のインストールを行うグローバルがある /<code>npm install -g &lt;PACKAGE&gt;</code></li>
+        </ul>
+      </li>
+      <li>
+        <p>ローカルインストールでは<code>./node_modules</code>にモジュールをインストールし、実行ファイルは<code>./node_modules/.bin/</code>にインストールされる。(おそらくPATHの設定だと思われるが私の環境ではpackage.jsonファイルがない場合にうまくローカル指定でインストール出来なかった)</p>
+      </li>
+      <li>
+        <p>グローバルインストールでは<code>{prefix}/lib/node_modules</code>にモジュールをインストールし、<code>{prefix}/bin</code>に実行ファイルをインストール。ついでに<code>man</code>ファイルがある場合は<code>{prefix}/share/man</code>にインストールを行う。<br />
+<code>{prefix}</code>は少なくともMac OS Xでは<code>/usr/local</code>というパスになる。</p>
+      </li>
+      <li>
+        <p>またどちらの場合でもバージョンの指定(後述)がない場合は常に公開されている最新のパッケージがインストールされる。</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><code>npm search &lt;SEARCH KEYWORD&gt;</code></strong>: npmのパッケージを検索</p>
+  </li>
+  <li>
+    <p><strong><code>npm ls</code></strong>: インストール済みのパッケージの一覧を表示。</p>
+  </li>
+  <li>
+    <p><code>npm -g ls</code>とするとシステム全体のパッケージを一覧できる。</p>
+  </li>
+  <li>
+    <p><strong><code>npm update</code></strong>: インストール済みのパッケージをアップデート。</p>
+
+    <ul>
+      <li>インストール済みのパッケージの最新バージョンを検索</li>
+      <li>もしあればインストールする</li>
+      <li>依存設定が問題なければ依存されているパッケージを最新バージョンに差し替える</li>
+      <li>古いバージョンが依存設定されていない場合に古いバージョンのパッケージを削除する</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><code>npm outdated</code></strong>: package.jsonファイルで指定している依存パッケージがアップデートされているかを確認する。</p>
+  </li>
+</ul>
+
+<h4>npmの自動補完</h4>
+
+<ul>
+  <li><code>. &lt;(npm completion)</code>を<code>~/.bashrc</code>なり <code>~/.zshrc</code>なりに記述すれば<code>tab</code>でコマンドを自動補完できる。</li>
+</ul>
+
+<h3>package.json</h3>
+
+<ul>
+  <li>package.jsonファイルはプロジェクトにおける様々なメタデータを保持するファイル。  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>{
+  &quot;name&quot;: &quot;best-practices&quot;,
+  &quot;description&quot;: &quot;A package using versioning best-practices&quot;,
+  &quot;version&quot;: &quot;0.0.1&quot;,
+  &quot;dependencies&quot;: {
+    &quot;colors&quot;: &quot;0.x.x&quot;,
+    &quot;express&quot;: &quot;2.3.x&quot;,
+    &quot;optimist&quot;: &quot;0.2.x&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;mocha&quot;: &quot;1.7.x&quot;
+  },
+  &quot;engine&quot;: &quot;node &gt;= 0.4.1&quot;
+}
+</pre></div>
+</div>
+</div>
+
+<ul>
+  <li>npmパッケージとして公開する場合には<a href="https://npmjs.org/doc/json.html">こちらを参照</a></li>
+  <li><code>name</code>と<code>version</code>は必須</li>
+  <li>開発用ツールとしてnpmを利用する場合は<code>dependencies</code>よりも<code>devDependencies</code>に利用するパッケージを記載するほうがいい。<br />
+ユニットテスト用のツールやgrunt、gruntのプラグインなどは<code>devDependencies</code>に記載する。</li>
+</ul>
+
+<h4>バージョンの指定:</h4>
+
+<ul>
+  <li>
+    <p>上記の例では:<code>"mocha": "1.7.x"</code>の<code>"1.7.x"</code>でパッケージのバージョンを指定。<br />
+ここでは<a href="http://visionmedia.github.com/mocha/">mocha</a>のバージョン1.7.系のバージョンを指定している。1.7の範囲内で最新を取得してくるという意味。</p>
+  </li>
+  <li>
+    <p>package.jsonで指定できるパッケージは<code>npm install</code>コマンドでインストールできるパッケージと同等。</p>
+  </li>
+  <li>
+    <p><strong>レンジの指定</strong></p>
+
+    <ul>
+      <li>例えば<code>v1.5</code>から<code>v1.9</code>までで最新を取得する。という様な指定を行うのがレンジ。</li>
+      <li>
+        <p>npmでは<a href="https://github.com/isaacs/node-semver">node-semver</a>を使ってバージョンの管理を行っているそう。  </p>
+      </li>
+      <li><code>&gt;1.2.3</code> / <code>1.2.3</code>よりも新しいバージョンを取得</li>
+      <li><code>&lt;1.2.3</code> / <code>1.2.3</code>よりも古いバージョンを取得</li>
+      <li><code>~1.2.3</code> / 最低でも<code>1.2.3</code>バージョン、最新でも<code>1.3.0</code>未満を取得</li>
+      <li><code>1.2.x</code> / <code>1.2.0</code>から<code>1.3.0</code>未満の最新バージョンを取得</li>
+      <li><code>*</code> / 常に最新バージョンを取得</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>インストール元の指定</strong></p>
+
+    <ul>
+      <li>
+        <p>デフォルトではnpm registryに公開されたパッケージを取得するが、それ以外のインストール元を指定することも可能。</p>
+      </li>
+      <li>
+        <p><code>git://github.com/user/repo.git#ref</code> </p>
+        <ul>
+          <li>GitHubで <strong>公開</strong> されているレポジトリをインストールできる。</li>
+          <li><code>#ref</code>はオプションでブランチ名やタグ名、コミットIDを指定できる。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div><div class="CodeRay">
+  <div class="code"><pre>dependencies&quot;: {
+    &quot;public&quot;: &quot;git://github.com/user/repo.git#ref&quot;, 
+    &quot;private&quot;: &quot;git+ssh://git@github.com:user/repo.git#ref&quot;
+}
+</pre></div>
+</div>
+</div>
+
+<pre><code>- package.jsonファイルでは上記の様に記述。(ちなみに`"private"`の値はGitHubでプライベートとなっているレポジトリの指定の例)
+</code></pre>
+
+<h2>リサーチ</h2>
+
+<h3>npm</h3>
+
+<ul>
+  <li><a href="https://npmjs.org/doc/">npm documentation</a></li>
+  <li><a href="http://blog.nodejs.org/2011/03/23/npm-1-0-global-vs-local-installation/">npm 1.0: Global vs Local installation</a></li>
+  <li><a href="https://npmjs.org/">npm</a></li>
+  <li><a href="http://howtonode.org/introduction-to-npm">Introduction to npm - How To Node - NodeJS</a></li>
+  <li><a href="http://semver.org/">Semantic Versioning 2.0.0-rc.1</a></li>
+</ul>
+
+<h3>package.json</h3>
+
+<ul>
+  <li><a href="http://package.json.jit.su/">Package.json: an interactive guide</a></li>
+  <li><a href="http://docs.nodejitsu.com/articles/getting-started/npm/what-is-the-file-package-json">What is the file package.json?</a></li>
+  <li><a href="http://blog.nodejitsu.com/package-dependencies-done-right">Package.json dependencies done right</a></li>
+</ul>
+
+
+				</div>
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+</article>
+</div><!-- unit-inner -->
+</div><!-- unit -->
+<div class="unit unit-nav">
+	<div class="unit-inner">
+			<div class="bd">
+				<div class="group">
+					<nav class="page-nav">
+					<ul>
+						
+						
+						<li class="new"><a class="internal" rel="next" href="/2012/12/16/jade-as-prototype-language/" title="Jade as Prototype Language">&rarr;</a></li>
+						
+						</ul>
+					</nav><!-- /.page-nav-bottom -->
+				</div><!-- group -->
+			</div>
+	</div>
+</div>
+</div><!-- body -->
+
+<footer class="the-footer">
+<div class="unit">
+	<div class="unit-inner">
+	
+		<div class="mod mod-home">
+		<div class="inner">
+			<div class="bd">
+				<p><a href="/" class="has-icon"><i class="icon-home"></i> Home</a></p>
+			</div>
+		</div><!-- inner -->
+	</div><!-- mod -->
+
+	
+	<div class="mod mod-question">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Questions?</h4>
+		</div>
+		<div class="bd">
+			<p>
+			<a class="has-icon" href="https://github.com/studiomohawk/publicdraft/issues/new">
+				<i class='icon-github'></i> Ask Me on Github
+      </a>
+			</p>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<div class="mod mod-about">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">About</h4>
+		</div>
+    <div class="bd">
+      
+
+<p>勉強会などでプレゼンをする際に必ず私が行うのがアウトラインの作成とリサーチ。<br />
+普段は勉強会への登壇が決まってから作るものですが、Public
+Draftではそのフォーマットの練習およびプレゼンのアイデア集積のため、依頼がないのに作って公開していきます。<br />
+もしも本企画から実際に勉強会への登壇が決まった場合、
+運営側の判断で決まり次第、非公開になるかも知れませんのであらかじめご了承ください。  </p>
+
+<p>本企画のアイデアをベースに私に勉強会での登壇を依頼したい場合はご連絡くださいませ。<br />
+また本企画のアイデアをベースに私の代わりに登壇したい方がいる場合はその旨連絡いただければ。</p>
+
+<p>2012/12/16より新たな編集方針の下、更新を再開しています。旧編集方針の記事については<a href="https://gist.github.com/4301918">こちらに移動しました</a></p>
+
+
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<div class="mod mod-elsewhere">
+	<div class="inner">
+		<div class="hd">
+			<h4 class="h2">Elsewhere</h4>
+		</div>
+		<div class="bd">
+			<ul class="list-square">
+				<li><a href="http://twitter.com/#!/cssradar" rel="me" title="cssradar@twitter">cssradar@twitter</a> / 1日5件以内でフロントエンドな情報を共有</li>
+				<li><a href="http://seven.studiomohawk.com/" rel="me" title="Seven">Seven</a> / フロントエンドブックマーク</li>
+        <li><a href="http://enja.studiomohawk.com/" rel="me" title="en.ja">en.ja</a> / フロントエンダのための翻訳記事</li>
+        <li><a href="https://github.com/organizations/enja-oss">en.ja OSS</a> / OSSドキュメント翻訳プロジェクト</li>
+				<li><a href="https://github.com/studiomohawk" rel="me" title="github">github</a> / このブログのソースも公開してます</li>
+				<li><a href="http://pinboard.in/u:studiomohawk" rel="me" title="Pinboard">Pinboard</a> / カオスにならないようきちんとモニタ</li>
+				<li><a href="http://500px.com/studiomohawk/photos" rel="me" title="500px">500px</a> / 趣味は写真。Nikon D90ユーザ</li>
+			</ul>
+		</div>
+	</div><!-- inner -->
+</div><!-- mod -->
+
+	<p class="madeintokyo">
+	Build by Yuya Saito. <a href="https://twitter.com/cssradar" rel="me" title="Twitter@cssradar">@cssradar</a><br>
+	Made Proudly in Tokyo.
+	</p>
+	</div><!-- unit-inner -->
+</div><!-- unit -->
+</footer>
+
+</div><!-- #page -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/asset/script/script.js"></script>
+<!-- end scripts -->
+<script>
+var _gaq=[['_setAccount','UA-61203-19'],['_trackPageview']];
+(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+</body>
+</html>
+

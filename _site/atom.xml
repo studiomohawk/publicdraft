@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<link rel="hub" href="https://pubsubhubbub.appspot.com"/>
-	<title>Public Draft | Just writing down what I've found.</title>
+	<title>Public Draft | Outlining and Researching for the Presentation</title>
 	<link href="http://publicdraft.studiomohawk.com/atom.xml" rel="self"/>
 	<link href="http://publicdraft.studiomohawk.com"/>
-	<updated>2012-11-24T12:41:09+09:00</updated>
+	<updated>2012-12-16T22:43:22+09:00</updated>
 	<id>http://css.studiomohawk.com/</id>
 	<author>
 		<name>Yuya Saito</name>
@@ -12,175 +12,259 @@
 	</author>
 	
 		<entry>
-			<title>DocPad</title>
-			<link href="http://publicdraft.studiomohawk.com/research/2012/07/16/docpad/"/>
+			<title>Jade as Prototype Language</title>
+			<link href="http://publicdraft.studiomohawk.com/2012/12/16/jade-as-prototype-language/"/>
 			<updated></updated>
-			<id>http://publicdraft.studiomohawk.com/research/2012/07/16/docpad</id>
+			<id>http://publicdraft.studiomohawk.com/2012/12/16/jade-as-prototype-language</id>
 			<content type="html">
-				&lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad&quot;&gt;DocPad&lt;/a&gt;はnode.jsで動作する静的HTMLファイルジェネレータ。&lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&lt;/a&gt;のnode.jsバージョン。&lt;/p&gt;
+				&lt;h2&gt;メッセージ&lt;/h2&gt;
 
-&lt;h2&gt;インストール&lt;/h2&gt;
+&lt;p&gt;Node.js用テンプレートエンジンである[Jade](&lt;a href=&quot;http://jade-lang.com/&quot;&gt;Jade - Template Engine&lt;/a&gt;はHTMLから本当に必要な部分だけを抜き出した言語。そのシンプルながら非常に強力なテンプレートエンジンはモダンウェブ開発に欠かすことが出来ないプロトタイプを作る言語として適している。&lt;br /&gt;
+今回はプロトタイプ言語としてのJadeをJadeの基礎を踏まえて紹介していこう。&lt;/p&gt;
 
-&lt;p&gt;(node.jsはインストールされているとして)  &lt;/p&gt;
+&lt;h2&gt;アウトライン&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;npm install -g -f docpad@6.2&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;docpad install&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;JadeはHamlに影響を受けて生まれた言語&lt;/h3&gt;
 
-&lt;p&gt;&lt;code&gt;sudo&lt;/code&gt;が必要であれば適宜。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://haml.info/&quot;&gt;Haml&lt;/a&gt; / HTML abstraction markup languade&lt;/li&gt;
+  &lt;li&gt;JadeはそのHamlに影響を受けたJavaScript実装のテンプレート言語&lt;/li&gt;
+  &lt;li&gt;例:&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;適当なディレクトリを作成して、&lt;br /&gt;
-&lt;code&gt;docpad run&lt;/code&gt;&lt;br /&gt;
-とすると&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;Which skeleton will you use?
-  1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; HTML5 Boilerplate
-  2&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Website
-  3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Kitchensink
-  4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; Hogan
-  5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; No Skeleton
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;!!!
+html
+  head
+    title my jade template
+  body
+    h1 Hello #{name}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;というメッセージが表示される。大抵の場合は1か、5を選択することになる。&lt;br /&gt;
-DocPadで何ができるのか実際に動かしてみたいという場合は3を選ぶといい。&lt;br /&gt;
-DocPadは&lt;code&gt;src&lt;/code&gt;というディレクトリに&lt;code&gt;documents&lt;/code&gt;、&lt;code&gt;files&lt;/code&gt;、&lt;code&gt;layouts&lt;/code&gt;というサブディレクトリを生成するが、それぞれがどんな役割を持っているか分からない場合は1〜4を選択するといいだろう。&lt;/p&gt;
+&lt;p&gt;このJadeに&lt;code&gt;{&quot;name&quot;: &quot;Bob&quot;}&lt;/code&gt;をデータとして渡すと&lt;/p&gt;
 
-&lt;p&gt;ちなみに&lt;code&gt;docpad run&lt;/code&gt;はディレクトリに対して1度しか使えない様になっているっぽい。&lt;/p&gt;
-
-&lt;p&gt;この時点で&lt;code&gt;http://localhost:9778/&lt;/code&gt;でDocPadが生成したサイトを閲覧できる。&lt;/p&gt;
-
-&lt;h2&gt;プラグイン&lt;/h2&gt;
-
-&lt;p&gt;DocPadにはすでに&lt;a href=&quot;https://github.com/bevry/docpad/wiki/Plugins&quot;&gt;結構な数のプラグイン&lt;/a&gt;が存在している。&lt;/p&gt;
-
-&lt;p&gt;プラグインのインストールは&lt;code&gt;docpad run&lt;/code&gt;を実行したディレクトリに&lt;code&gt;cd&lt;/code&gt;して&lt;br /&gt;
-&lt;code&gt;npm install -f docpad-plugin-プラグイン名&lt;/code&gt;&lt;br /&gt;
-としてインストール。&lt;br /&gt;
-例えばstylusのプラグインであれば&lt;br /&gt;
-&lt;code&gt;npm install -f docpad-plugin-stylus&lt;/code&gt;&lt;br /&gt;
-とする。&lt;/p&gt;
-
-&lt;p&gt;以下は個人的に使いそうなプラグイン達。細かい説明はそれぞれのReadmeを読んでほしい。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/stylus/&quot;&gt;stylus&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/markdown/&quot;&gt;markdown&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/jade/&quot;&gt;jade&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/associated-files&quot;&gt;associated-files&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/cleanurls/&quot;&gt;cleanurls&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/feedr/&quot;&gt;feedr&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/partials/&quot;&gt;partials&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://github.com/bevry/docpad-extras/tree/master/plugins/pygments/&quot;&gt;pygments&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;CLI&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;docpad cli&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;docpadのコマンドを利用できる。以下のコマンドを叩くのに利用。&lt;br /&gt;
-このコマンドを実行した後は以下のコマンドから&lt;code&gt;docpad&lt;/code&gt;が必要なくなる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;docpad generate&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;HTMLを生成。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;docpad watch&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ファイルの変更を監視、変更に応じてHTMLを生成。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;server&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;プレビュー用のサーバを立ち上げる。&lt;/p&gt;
-
-&lt;h2&gt;src/documents、src/layouts、src/files&lt;/h2&gt;
-
-&lt;h3&gt;src/layouts&lt;/h3&gt;
-
-&lt;p&gt;このディレクトリにはテンプレートにあたるファイルを格納する。&lt;br /&gt;
-ecoというテンプレートエンジンを利用している場合は、&lt;code&gt;[layout-name].html.eco&lt;/code&gt;という名前でファイルを保存する。&lt;/p&gt;
-
-&lt;p&gt;例えばデフォルトテンプレートを作る場合は&lt;br /&gt;
-&lt;code&gt;default.html.eco&lt;/code&gt;となる。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;!doctype html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;charset=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;utf-8&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%= @document.title or &amp;quot;Joe Doe&amp;#39;s Site&amp;quot; %&amp;gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/styles/style.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;logo&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;John Doe loves animals&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;&amp;lt;&lt;/span&gt;%- @content %&amp;gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;footer&amp;gt;&lt;/span&gt;Copyright 2012 John Doe.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/footer&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;doctype&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;tag&quot;&gt;&amp;lt;html&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;tag&quot;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;tag&quot;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;my jade template&lt;span class=&quot;tag&quot;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;tag&quot;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;tag&quot;&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;Hello Bob&lt;span class=&quot;tag&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;tag&quot;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;tag&quot;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;code&gt;&amp;lt;%- @content %&amp;gt;&lt;/code&gt;にコンテンツが挿入される。&lt;/p&gt;
+&lt;p&gt;というHTMLに変換される。&lt;/p&gt;
 
-&lt;h3&gt;src/files&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;閉じタグ忘れもなく、&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;で囲む必要もない&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;#id&lt;/code&gt;を付与するには: &lt;code&gt;div#id&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;.class&lt;/code&gt;を付与するには: &lt;code&gt;div.class&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;複数クラスは: &lt;code&gt;div.class1.class2&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;これにIDも付与できる: &lt;code&gt;div#id.class1.class2&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;div&lt;/code&gt;を書くのは面倒？: &lt;code&gt;#id&lt;/code&gt;または&lt;code&gt;.class&lt;/code&gt;のみで&lt;code&gt;div&lt;/code&gt;を補完&lt;/li&gt;
+  &lt;li&gt;テキストは: &lt;code&gt;p テキスト&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;複数行に渡るテキストは:&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;CSSやJavaScript、画像などを格納するためのディレクトリ。  &lt;/p&gt;
-
-&lt;p&gt;例えば&lt;code&gt;src/files/styles/style.css&lt;/code&gt;というファイルは&lt;code&gt;out/styles/style.css&lt;/code&gt;というディレクトリに出力される。&lt;code&gt;out&lt;/code&gt;ディレクトリが生成済みのファイル群が格納される。&lt;/p&gt;
-
-&lt;h3&gt;src/documents&lt;/h3&gt;
-
-&lt;p&gt;このディレクトリにコンテンツを格納する。&lt;br /&gt;
-&lt;code&gt;src/documents&lt;/code&gt;に&lt;code&gt;index.html&lt;/code&gt;というファイルを作成したとして、&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;---
-layout: default
-title: &amp;quot;John Doe loves animals&amp;quot;
----
-
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;article&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;h2&amp;gt;&lt;/span&gt;My favorite animal : the cat !&lt;span class=&quot;nt&quot;&gt;&amp;lt;/h2&amp;gt;&lt;/span&gt;
-
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;written on &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;date&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2012-05-19&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
-  &lt;span class=&quot;nt&quot;&gt;&amp;lt;p&amp;gt;&lt;/span&gt;Who doesn&amp;#39;t love cats ? &lt;span class=&quot;nt&quot;&gt;&amp;lt;/p&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;nt&quot;&gt;&amp;lt;/article&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;p
+  | foo bar baz
+  | rawr rawr
+  | super cool
+  | go jade go
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;のように記述すればいい。  &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;コメントもエレガント: &lt;code&gt;// JavaScriptのコメントと同じ&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;入れ子になるタグも:&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;code&gt;---&lt;/code&gt;で囲まれている部分はメタデータを指定する箇所。&lt;br /&gt;
-&lt;code&gt;layout&lt;/code&gt;はテンプレートを指定し、&lt;code&gt;title&lt;/code&gt;はタイトルを指定する。&lt;br /&gt;
-ほかにも&lt;code&gt;tags&lt;/code&gt;、&lt;code&gt;content&lt;/code&gt;、&lt;code&gt;ignored&lt;/code&gt;、&lt;code&gt;date&lt;/code&gt;などを利用できる。&lt;br /&gt;
-さらに自分でカスタムすることも可能。&lt;/p&gt;
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;ul
+  li.first
+    a(href='#') foo
+  li
+    a(href='#') bar
+  li.last
+    a(href='#') baz
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
-&lt;p&gt;先ほどの&lt;code&gt;src/layouts&lt;/code&gt;で示した&lt;code&gt;&amp;lt;%- @content %&amp;gt;&lt;/code&gt;に上記のコンテンツが挿入される。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;属性の指定は: &lt;code&gt;a(href='/login', title='View login page')&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;より詳しい文法については → &lt;a href=&quot;http://naltatis.github.com/jade-syntax-docs/&quot;&gt;Jade Template Syntax Documentation by Example&lt;/a&gt;でインタラクティブに学ぶことができる。&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;以上に加えて、&lt;br /&gt;
-DocPadが提供している&lt;a href=&quot;https://github.com/bevry/docpad/wiki/Beginner-Guide&quot;&gt;ビギナーガイド&lt;/a&gt;にかなり細かい部分まで解説してある。&lt;/p&gt;
+&lt;h4&gt;インストール&lt;/h4&gt;
 
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;npm install jade&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;グローバルとしてインストールするには: &lt;code&gt;sudo npm install -g jade&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/visionmedia/jade/blob/master/jade.js&quot;&gt;jade.js&lt;/a&gt;はクライアントサイドでJadeをHTMLに変換できる。&lt;/li&gt;
+  &lt;li&gt;Jade内でmarkdownを利用するために以下のどれか1つをインストール。(個人的にはmarkedだとGitHubで採用されている形式が利用できるのでおすすめ)
+    &lt;ul&gt;
+      &lt;li&gt;markdown.js / &lt;code&gt;sudo npm install -g markdown&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;node-discount / &lt;code&gt;sudo npm install -g discount&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;marked / &lt;code&gt;sudo npm install -g marked&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;プロトタイプ言語&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTMLベースのプロトタイプはデベロッパ向け？&lt;/li&gt;
+  &lt;li&gt;Jadeはシンプルで強力 === HTMLをより簡単により早く記述できる。&lt;/li&gt;
+  &lt;li&gt;プロトタイプ言語という提案。&lt;/li&gt;
+  &lt;li&gt;Jadeをテンプレート言語として使うにはnode.jsが必要。しかし、プロトタイプ専用言語として利用すれば利用シーンが広がる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;コンテンツファースト時代のデザイン手法&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Stehen Hay氏は&lt;a href=&quot;https://speakerdeck.com/stephenhay/responsive-design-workflow&quot;&gt;Responsive Design Workflow&lt;/a&gt;にて:
+    &lt;ul&gt;
+      &lt;li&gt;Designing in Text → ワークフローの早い段階でコンテンツとなるテキストをmarkdownを使って構造化のデザインをする手法について紹介している。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Filter&lt;/strong&gt; in Jade: markdownをJadeのフィルターとして利用できる&lt;/li&gt;
+  &lt;li&gt;markdownはデザイナ、ディレクタ、デベロッパの共通言語として利用できるほどシンプルで、このケースには十分な機能を有している。
+    &lt;ul&gt;
+      &lt;li&gt;見出し、テキスト、リンク、リストなど&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;使い回しができるパーツ&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Includes&lt;/strong&gt; in Jade: &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;./layout.jade
+./includes/
+  ./head.jade
+  ./foot.jade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;上記の様なファイル構造だとして   &lt;/p&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;html
+  include includes/head
+  body
+    h1 My Site
+    p Welcome to my super amazing site.
+    include includes/foot
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;このようにあらかじめ作成したコンポーネント群を呼び出すことができる。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;JavaScriptやCSSでも同じ傾向にあるようにJadeを使えばHTMLでもモジュール方式の開発ができることになる。&lt;/li&gt;
+  &lt;li&gt;Jonathan Snooks氏は&lt;a href=&quot;https://smacss.com/&quot;&gt;SMACSS&lt;/a&gt;でSassを使ったモジュール方式の開発用に以下のようなディレクトリ構成を提案している:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;./layout/
+  ./grid.scss
+  ./alternate.scss
+./module/
+  ./callout.scss
+  ./bookmarks.scss
+  ./btn.scss
+   ./btn-compose.scss
+./base.scss
+./states.scss
+./site-settings.scss
+./mixins.scss
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Jadeを使えば非常に近しい構成を作ることが可能だ:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;.index.jade
+./includes/
+  ./system/
+    ./head.jade
+    ./foot.jade
+  ./lauout/
+    ./grid.jade
+  ./module/
+    ./btn.jade
+    ./nav.jade
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;デザイナが編集を行うのは&lt;code&gt;index.jade&lt;/code&gt;だけで、デベロッパと協力して必要なモジュールを用意してもらえばいい。&lt;/li&gt;
+  &lt;li&gt;よく使うパーツがあれば、それを抽象化しモジュールとしてコーディングを行うのはデベロッパに任せればいい。&lt;/li&gt;
+  &lt;li&gt;CSSプリプロセッサを利用していれば、この構造に合わせてCSSも用意しておけば関係性を明確にできる。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;ミックスインとテンプレート継承&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Jadeにもミックスインそして、extendsと似たテンプレート継承がある。  &lt;/li&gt;
+  &lt;li&gt;デベロッパはプロトタイプの作成を柔軟に、高速に行うためにこれらの機能を上手に使ってテンプレートを抽象化することが可能。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;テンプレート言語としてのJadeの使い方&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;コマンドラインツールを使ってJadeからHTMLに変換を行う。&lt;/li&gt;
+  &lt;li&gt;GUI:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://livereload.com/&quot;&gt;LiveReload&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://incident57.com/codekit/&quot;&gt;CodeKit&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;使うコマンドは1つ: &lt;code&gt;jade --pretty JADE.FILE&lt;/code&gt; (動画デモ)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;ProtoJadeライブラリ&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;プロトタイプ言語としてのJadeのベースとなるオープンソースプロジェクト (作成予定)&lt;/li&gt;
+  &lt;li&gt;基本機能(草案):
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://html5boilerplate.com/&quot;&gt;HTML5 Boilerplate&lt;/a&gt;をベースに&lt;/li&gt;
+      &lt;li&gt;[Twitter Boostrap]にあるUI群をモジュールとして実装&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://learnboost.github.com/stylus/&quot;&gt;Stylus&lt;/a&gt;を利用&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://tjholowaychuk.com/post/27984551477/components&quot;&gt;Components&lt;/a&gt;ライクな構造とモジュール群の管理、拡張&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://jacobrask.github.com/styledocco/&quot;&gt;StyleDocco&lt;/a&gt;を利用してスタイルガイドを作成、プロトタイプライブラリページとする&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;リサーチ&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jade-lang.com/&quot;&gt;Jade - Template Engine&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/visionmedia/jade#readme&quot;&gt;visionmedia/jade · GitHub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://naltatis.github.com/jade-syntax-docs/&quot;&gt;Jade Template Syntax Documentation by Example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://speakerdeck.com/stephenhay/responsive-design-workflow&quot;&gt;Responsive Design Workflow // Speaker Deck&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://smacss.com/&quot;&gt;Scalable and Modular Architecture for CSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 				&lt;hr /&gt;
 				&lt;h5&gt;Elsewhere&lt;/h5&gt;
@@ -193,681 +277,194 @@ DocPadが提供している&lt;a href=&quot;https://github.com/bevry/docpad/wiki
 		</entry>
 	
 		<entry>
-			<title>Grunt: A JavaScript command line build tool</title>
-			<link href="http://publicdraft.studiomohawk.com/research/2012/05/20/grunt-a-javascript-command-line-build-tool/"/>
+			<title>npm / package.json</title>
+			<link href="http://publicdraft.studiomohawk.com/2012/12/16/npm-and-package.json/"/>
 			<updated></updated>
-			<id>http://publicdraft.studiomohawk.com/research/2012/05/20/grunt-a-javascript-command-line-build-tool</id>
+			<id>http://publicdraft.studiomohawk.com/2012/12/16/npm-and-package.json</id>
 			<content type="html">
-				&lt;p&gt;Grunt: JavaScript用タスクベースのコマンドラインビルドツール。  &lt;/p&gt;
+				&lt;h2&gt;メッセージ&lt;/h2&gt;
+
+&lt;p&gt;npm(nodeパッケージマネジャ)とそのパッケージのメタデータを保持するpackage.jsonはnode.jsでの開発だけではなく、フロントエンド開発におけるJavaScriptプロジェクトの管理を行うのに必須となりつつあるツール。  &lt;/p&gt;
+
+&lt;p&gt;npmとpackage.jsonを使いこなせるようになると&lt;a href=&quot;http://gruntjs.com/&quot;&gt;grunt.js&lt;/a&gt;や&lt;a href=&quot;https://github.com/twitter/bower&quot;&gt;bower&lt;/a&gt;、そして&lt;a href=&quot;http://jamjs.org/&quot;&gt;Jam&lt;/a&gt;などの開発をより加速し、ライブラリ群のマネジメントを楽にするツールもより使いこなせるようになる。&lt;/p&gt;
+
+&lt;p&gt;今回は、そのnpmとpackage.jsonについて紹介していこう。&lt;/p&gt;
+
+&lt;h2&gt;アウトライン&lt;/h2&gt;
+
+&lt;h3&gt;npm&lt;/h3&gt;
+
+&lt;h4&gt;インストール&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;concat&lt;/code&gt; / ファイルを結合&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;init&lt;/code&gt; / プロジェクトのscaffoldingをテンプレートから作成&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;lint&lt;/code&gt; / &lt;a href=&quot;http://www.jshint.com/&quot;&gt;JSHint&lt;/a&gt;を利用したバリデーション&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;min&lt;/code&gt; / &lt;a href=&quot;https://github.com/mishoo/UglifyJS/&quot;&gt;UglifyJS&lt;/a&gt;による圧縮&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;qunit&lt;/code&gt; / &lt;a href=&quot;http://docs.jquery.com/QUnit&quot;&gt;QUnit&lt;/a&gt;によるテストをヘッドレス&lt;a href=&quot;http://phantomjs.org/&quot;&gt;PhantomJS&lt;/a&gt;を利用して実行&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;server&lt;/code&gt; / ウェブサーバを立ち上げる&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;test&lt;/code&gt; / &lt;a href=&quot;https://github.com/caolan/nodeunit&quot;&gt;nodeunit&lt;/a&gt;を利用したユニットテストを実行&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;watch&lt;/code&gt; / 監視対象のファイルに変更があった場合にタスクを実行する&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://nodejs.org/download/&quot;&gt;node.js&lt;/a&gt;提供のインストーラに付属  &lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;curl https://npmjs.org/install.sh | sh&lt;/code&gt; (&lt;a href=&quot;https://npmjs.org/doc/faq.html#How-do-I-update-npm&quot;&gt;参考&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/cowboy/grunt&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
+&lt;h4&gt;npmコマンド&lt;/h4&gt;
 
-&lt;h2&gt;インストール&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code&gt;npm install&lt;/code&gt;&lt;/strong&gt;: パッケージをインストール&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;npm install -g grunt&lt;/code&gt;&lt;br /&gt;
-&lt;code&gt;qunit&lt;/code&gt;タスク用にPhantomJSが必要になるがnpmからはインストールができないため、
-&lt;code&gt;brew install phantomjs&lt;/code&gt;と&lt;code&gt;brew&lt;/code&gt;でインストールする。&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;使い方は大きく分けて2つ: &lt;/p&gt;
 
-&lt;h2&gt;使い方&lt;/h2&gt;
+        &lt;ul&gt;
+          &lt;li&gt;プロジェクトに対してローカルなインストールを行う(こちらがデフォルト) /&lt;code&gt;npm install &amp;lt;PACKAGE&amp;gt;&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;コマンドラインツールなど用のインストールを行うグローバルがある /&lt;code&gt;npm install -g &amp;lt;PACKAGE&amp;gt;&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;ローカルインストールでは&lt;code&gt;./node_modules&lt;/code&gt;にモジュールをインストールし、実行ファイルは&lt;code&gt;./node_modules/.bin/&lt;/code&gt;にインストールされる。(おそらくPATHの設定だと思われるが私の環境ではpackage.jsonファイルがない場合にうまくローカル指定でインストール出来なかった)&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;グローバルインストールでは&lt;code&gt;{prefix}/lib/node_modules&lt;/code&gt;にモジュールをインストールし、&lt;code&gt;{prefix}/bin&lt;/code&gt;に実行ファイルをインストール。ついでに&lt;code&gt;man&lt;/code&gt;ファイルがある場合は&lt;code&gt;{prefix}/share/man&lt;/code&gt;にインストールを行う。&lt;br /&gt;
+&lt;code&gt;{prefix}&lt;/code&gt;は少なくともMac OS Xでは&lt;code&gt;/usr/local&lt;/code&gt;というパスになる。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;またどちらの場合でもバージョンの指定(後述)がない場合は常に公開されている最新のパッケージがインストールされる。&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code&gt;npm search &amp;lt;SEARCH KEYWORD&amp;gt;&lt;/code&gt;&lt;/strong&gt;: npmのパッケージを検索&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code&gt;npm ls&lt;/code&gt;&lt;/strong&gt;: インストール済みのパッケージの一覧を表示。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;npm -g ls&lt;/code&gt;とするとシステム全体のパッケージを一覧できる。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code&gt;npm update&lt;/code&gt;&lt;/strong&gt;: インストール済みのパッケージをアップデート。&lt;/p&gt;
 
-&lt;p&gt;gruntは実行したディレクトリ内の&lt;code&gt;grunt.js&lt;/code&gt;というファイルを検索、なければ親ディレクトリと見つけるまで継続して検索し続ける。&lt;br /&gt;
-&lt;code&gt;grunt.js&lt;/code&gt;にはプロジェクトの設定、呼び出すgruntのプラグインやタスクフォルダの設定、タスク、ヘルパそのものを記述する。&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;インストール済みのパッケージの最新バージョンを検索&lt;/li&gt;
+      &lt;li&gt;もしあればインストールする&lt;/li&gt;
+      &lt;li&gt;依存設定が問題なければ依存されているパッケージを最新バージョンに差し替える&lt;/li&gt;
+      &lt;li&gt;古いバージョンが依存設定されていない場合に古いバージョンのパッケージを削除する&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;&lt;code&gt;npm outdated&lt;/code&gt;&lt;/strong&gt;: package.jsonファイルで指定している依存パッケージがアップデートされているかを確認する。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;ベーシックなgrunt.jsファイルの例&lt;/strong&gt;&lt;/p&gt;
+&lt;h4&gt;npmの自動補完&lt;/h4&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;. &amp;lt;(npm completion)&lt;/code&gt;を&lt;code&gt;~/.bashrc&lt;/code&gt;なり &lt;code&gt;~/.zshrc&lt;/code&gt;なりに記述すれば&lt;code&gt;tab&lt;/code&gt;でコマンドを自動補完できる。&lt;/li&gt;
+&lt;/ul&gt;
 
-  &lt;span class=&quot;c1&quot;&gt;// プロジェクトの設定&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;lint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;lib/**/*.js&amp;#39;&amp;#39;test/**/*.js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;jshint&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;browser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;h3&gt;package.json&lt;/h3&gt;
 
-  &lt;span class=&quot;c1&quot;&gt;// 呼び出すgruntのプラグインやタスクフォルダの設定&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;loadNpmTasks&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;grunt-sample&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;ul&gt;
+  &lt;li&gt;package.jsonファイルはプロジェクトにおける様々なメタデータを保持するファイル。  &lt;/li&gt;
+&lt;/ul&gt;
 
-  &lt;span class=&quot;c1&quot;&gt;// デフォルトタスク&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;registerTask&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;lint sample&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;{
+  &amp;quot;name&amp;quot;: &amp;quot;best-practices&amp;quot;,
+  &amp;quot;description&amp;quot;: &amp;quot;A package using versioning best-practices&amp;quot;,
+  &amp;quot;version&amp;quot;: &amp;quot;0.0.1&amp;quot;,
+  &amp;quot;dependencies&amp;quot;: {
+    &amp;quot;colors&amp;quot;: &amp;quot;0.x.x&amp;quot;,
+    &amp;quot;express&amp;quot;: &amp;quot;2.3.x&amp;quot;,
+    &amp;quot;optimist&amp;quot;: &amp;quot;0.2.x&amp;quot;
+  },
+  &amp;quot;devDependencies&amp;quot;: {
+    &amp;quot;mocha&amp;quot;: &amp;quot;1.7.x&amp;quot;
+  },
+  &amp;quot;engine&amp;quot;: &amp;quot;node &amp;gt;= 0.4.1&amp;quot;
+}
+&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/cowboy/grunt-jquery-example/blob/master/grunt.js&quot;&gt;あらかじめ設定されているjQueryプロジェクトのgrunt.js例&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;プラグイン&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/gruntjs/grunt-contrib&quot;&gt;grunt-contrib&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;gruntによく使うタスクを追加する。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;clean&lt;/code&gt; / ファイル、フォルダを削除&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;coffee&lt;/code&gt; / CoffeeScriptをJavaScriptにコンパイル&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;handlebars&lt;/code&gt; / handlebarsのテンプレートをコンパイル&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;jade&lt;/code&gt; / jadeテンプレートをHTMLにコンパイル&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;jst&lt;/code&gt; / underscoreのテンプレートをコンパイル&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;less&lt;/code&gt; / lessファイルをCSSにコンパイル&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;mincss&lt;/code&gt; / CSSを圧縮&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;stylus&lt;/code&gt; / StylusファイルをCSSにコンパイル&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;zip&lt;/code&gt; / ファイル、フォルダをzip圧縮&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-contrib&lt;/code&gt;&lt;br /&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-contrib');&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/backbone-boilerplate/grunt-bbb&quot;&gt;backbone-boilerplate/grunt-bbb&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Backbone Boilerplateフレームワークツール。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install -g bbb&lt;/code&gt;&lt;br /&gt;
-使い方: &lt;code&gt;bbb init&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jzaefferer/grunt-css&quot;&gt;grunt-css&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;cssmin&lt;/code&gt;、&lt;code&gt;csslint&lt;/code&gt;という2つのタスクを追加できる。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-css&lt;/code&gt;&lt;br /&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-css');&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/sindresorhus/grunt-recess&quot;&gt;grunt-recess&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Twitterが採用しているスタイルガイドチェッカ&lt;a href=&quot;https://github.com/twitter/recess&quot;&gt;recess&lt;/a&gt;を利用出来る。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-recess&lt;/code&gt;&lt;br /&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-recess');&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;lint、LESSのコンパイル、結合タスクの例&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;recess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;dist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-            &lt;span class=&quot;s1&quot;&gt;&amp;#39;src/main.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;s1&quot;&gt;&amp;#39;src/component.css&amp;#39;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;dist/combined.css&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;compile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/asciidisco/grunt-requirejs&quot;&gt;grunt-requirejs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;npmパッケージとして公開する場合には&lt;a href=&quot;https://npmjs.org/doc/json.html&quot;&gt;こちらを参照&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;name&lt;/code&gt;と&lt;code&gt;version&lt;/code&gt;は必須&lt;/li&gt;
+  &lt;li&gt;開発用ツールとしてnpmを利用する場合は&lt;code&gt;dependencies&lt;/code&gt;よりも&lt;code&gt;devDependencies&lt;/code&gt;に利用するパッケージを記載するほうがいい。&lt;br /&gt;
+ユニットテスト用のツールやgrunt、gruntのプラグインなどは&lt;code&gt;devDependencies&lt;/code&gt;に記載する。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://requirejs.org/&quot;&gt;Require.js&lt;/a&gt;をgruntでビルドするタスクを追加。&lt;code&gt;r.js&lt;/code&gt;オプティマイザーの利用も可。&lt;/p&gt;
+&lt;h4&gt;バージョンの指定:&lt;/h4&gt;
 
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-requirejs&lt;/code&gt;&lt;br /&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-requirejs');&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;上記の例では:&lt;code&gt;&quot;mocha&quot;: &quot;1.7.x&quot;&lt;/code&gt;の&lt;code&gt;&quot;1.7.x&quot;&lt;/code&gt;でパッケージのバージョンを指定。&lt;br /&gt;
+ここでは&lt;a href=&quot;http://visionmedia.github.com/mocha/&quot;&gt;mocha&lt;/a&gt;のバージョン1.7.系のバージョンを指定している。1.7の範囲内で最新を取得してくるという意味。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;package.jsonで指定できるパッケージは&lt;code&gt;npm install&lt;/code&gt;コマンドでインストールできるパッケージと同等。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;レンジの指定&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;requirejs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;build&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;appDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;src&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;baseUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;js&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;paths&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;underscore&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;../vendor/underscore&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;jquery&lt;/span&gt;    &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;../vendor/jquery&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;backbone&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;../vendor/backbone&amp;#39;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;pragmas&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;doExclude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;skipModuleInsertion&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;optimizeAllPluginResources&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;findNestedDependencies&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
+    &lt;ul&gt;
+      &lt;li&gt;例えば&lt;code&gt;v1.5&lt;/code&gt;から&lt;code&gt;v1.9&lt;/code&gt;までで最新を取得する。という様な指定を行うのがレンジ。&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;npmでは&lt;a href=&quot;https://github.com/isaacs/node-semver&quot;&gt;node-semver&lt;/a&gt;を使ってバージョンの管理を行っているそう。  &lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;&amp;gt;1.2.3&lt;/code&gt; / &lt;code&gt;1.2.3&lt;/code&gt;よりも新しいバージョンを取得&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;&amp;lt;1.2.3&lt;/code&gt; / &lt;code&gt;1.2.3&lt;/code&gt;よりも古いバージョンを取得&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;~1.2.3&lt;/code&gt; / 最低でも&lt;code&gt;1.2.3&lt;/code&gt;バージョン、最新でも&lt;code&gt;1.3.0&lt;/code&gt;未満を取得&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;1.2.x&lt;/code&gt; / &lt;code&gt;1.2.0&lt;/code&gt;から&lt;code&gt;1.3.0&lt;/code&gt;未満の最新バージョンを取得&lt;/li&gt;
+      &lt;li&gt;&lt;code&gt;*&lt;/code&gt; / 常に最新バージョンを取得&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;インストール元の指定&lt;/strong&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;デフォルトではnpm registryに公開されたパッケージを取得するが、それ以外のインストール元を指定することも可能。&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;code&gt;git://github.com/user/repo.git#ref&lt;/code&gt; &lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;GitHubで &lt;strong&gt;公開&lt;/strong&gt; されているレポジトリをインストールできる。&lt;/li&gt;
+          &lt;li&gt;&lt;code&gt;#ref&lt;/code&gt;はオプションでブランチ名やタグ名、コミットIDを指定できる。&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;&lt;div class=&quot;CodeRay&quot;&gt;
+  &lt;div class=&quot;code&quot;&gt;&lt;pre&gt;dependencies&amp;quot;: {
+    &amp;quot;public&amp;quot;: &amp;quot;git://github.com/user/repo.git#ref&amp;quot;, 
+    &amp;quot;private&amp;quot;: &amp;quot;git+ssh://git@github.com:user/repo.git#ref&amp;quot;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jharding/grunt-less&quot;&gt;grunt-less&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;LESSをCSSにコンパイル。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-less&lt;/code&gt;&lt;br /&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-less');&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jharding/grunt-exec&quot;&gt;grunt-exec&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Gruntからシェルコマンドを実行。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-exec&lt;/code&gt;&lt;br /&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-exec');&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;remove_logs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;rm -f *.log&amp;#39;&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;list_files&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;ls -l **&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/webxl/grunt-reload&quot;&gt;grunt-reload&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;gruntnのデフォルト&lt;code&gt;watch&lt;/code&gt;タスクで指定したファイルの変更に合わせてブラウザのリロードを行う。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-reload&lt;/code&gt;
-タスクのロード: &lt;code&gt;grunt.loadNpmTasks('grunt-reload');&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/pifantastic/grunt-s3&quot;&gt;grunt-s3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Amazon S3 アップロード/ダウンロード。&lt;/p&gt;
-
-&lt;p&gt;インストール: &lt;code&gt;npm install grunt-s3&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;js&quot;&gt;&lt;span class=&quot;nx&quot;&gt;grunt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-
-  &lt;span class=&quot;nx&quot;&gt;s3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;YOUR KEY&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;secret&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;YOUR SECRET&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;my-bucket&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;public-read&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// Files to be uploaded.&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;upload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;important_document.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/important.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;gzip&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;passwords.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/ignore.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-
-        &lt;span class=&quot;c1&quot;&gt;// These values will override the above settings.&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;bucket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;some-specific-bucket&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;access&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;authenticated-read&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// Wildcards are valid *for uploads only* until I figure out a good implementation&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;// for downloads.&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/*.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-
-        &lt;span class=&quot;c1&quot;&gt;// But if you use wildcards, make sure your destination is a directory.&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-
-    &lt;span class=&quot;c1&quot;&gt;// Files to be downloaded.&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;download&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/important.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;important_document_download.txt&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;garbage/IGNORE.txt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;passwords_download.txt&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-
-    &lt;span class=&quot;nx&quot;&gt;del&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/launch_codes.txt&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;documents/backup_plan.txt&amp;#39;&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-
-				&lt;hr /&gt;
-				&lt;h5&gt;Elsewhere&lt;/h5&gt;
-				&lt;ul&gt;
-					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
-					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
-					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
-				&lt;/ul&gt;
-			</content>
-		</entry>
-	
-		<entry>
-			<title>Sublime Text 2</title>
-			<link href="http://publicdraft.studiomohawk.com/research/2012/04/14/01-02-sublimetext2/"/>
-			<updated>2012-06-05 09:13:51 +0900</updated>
-			<id>http://publicdraft.studiomohawk.com/research/2012/04/14/01-02-sublimetext2</id>
-			<content type="html">
-				&lt;h2&gt;インストール&lt;/h2&gt;
-
-&lt;p&gt;dev buildをインストールして最新機能を使えるようにしておこう。&lt;br /&gt;
-&lt;a href=&quot;http://www.sublimetext.com/dev&quot;&gt;Sublime Text 2 - Dev Builds&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;プラグインをインストール&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://wbond.net/sublime_packages/package_control/installation&quot;&gt;Sublime Package Control&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Sublime Text 2をインストールし終えたらまずはじめにやっておくべきことがこのSublime Package Controlをイントールすること。&lt;/p&gt;
-
-&lt;p&gt;Sublime Text 2をスタートしてControl + `(View → Show Console)としてConsoleを立ち上げて&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;py&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Package Control.sublime-package&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sublime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;installed_packages_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;makedirs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;install_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;build_opener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ProxyHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()));&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ipp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;wb&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urllib2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;urlopen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;http://sublime.wbond.net/&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;%20&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Please restart Sublime Text to finish installation&amp;#39;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;この文字列をコピー&amp;amp;ペーストしてSublime Text2を再起動すれば完了。&lt;br /&gt;
-Package ControlはControl + Shift + pでCommand Palleteを立ち上げて、installをタイプしてみよう。&lt;br /&gt;
-するとPackage Control: Install Packageのオプションがハイライトされるのでエンター。&lt;br /&gt;
-探しているプラグイン名をタイプしてエンターすればプラグインのインストールが開始される。&lt;/p&gt;
-
-&lt;p&gt;Command PalleteからでもPackage Controlで管理されているプラグインを一覧できるが、若干読みづらいと思うのでウェブ上で登録されているプラグインをみることができる&lt;a href=&quot;http://wbond.net/sublime_packages/community&quot;&gt;こちら&lt;/a&gt;を参考に。現時点で411のプラグインが登録されている。&lt;/p&gt;
-
-&lt;h2&gt;ショートカット&lt;/h2&gt;
-
-&lt;h3&gt;覚えておきたいショートカット&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Control + Shift + p / Command Paletteを立ち上げる  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Command PaletteからSublime Text 2の様々な機能やスニペットを検索できます。Package Controlもここからアクセスできる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Command + p / ファイルファインダを立ち上げる&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;現在開いているファイルやフォルダ、プロジェクト内をキーワードでファイルを検索、開く。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Command + Control + G / Multi-Select&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;文字列を選択してからこのショートカットを入力するとファイル内にある文字列から選択した文字列と同じ文字列が選択される。この状態で編集するとすべての文字列が置き換えられる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Command + Shift + a / Expand Selection To Tag&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;カーソルのある部分からHTMLのタグ範囲を選択するショートカット。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Command + Option + 1&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;単一ウィンドウに切り替え。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Command + Option + Shift + 2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;ウィンドウを縦に分割。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Command + /&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;コメントをトグルする&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Option + Control + f&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/SublimeText/Tag&quot;&gt;Tag&lt;/a&gt; プラグイン導入済みの場合。&lt;br /&gt;
-選択範囲でHTMLタグをフォーマットする。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gist.github.com/1207002&quot;&gt;便利なショートカット集 @gist&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;念のため以下にMacのショートカットキーのシンボルを。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;- &amp;amp;#8984; Command キー
-- &amp;amp;#8997; Alt / Option キー
-- &amp;amp;#8963; Control キー
-- &amp;amp;#8679; Shift キー
-- &amp;amp;#8617; Return / Enter キー
+&lt;pre&gt;&lt;code&gt;- package.jsonファイルでは上記の様に記述。(ちなみに`&quot;private&quot;`の値はGitHubでプライベートとなっているレポジトリの指定の例)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2&gt;設定&lt;/h2&gt;
+&lt;h2&gt;リサーチ&lt;/h2&gt;
 
-&lt;p&gt;Sublime Text 2ではEmacsやVimのように設定ファイルを編集することで設定を変更できる。Preferences → Settings - Defaultを開いて、変更したい部分をコピーしてから、Preferences → Settings - Userにペーストして設定を変更しよう。  &lt;/p&gt;
-
-&lt;p&gt;同様にキーバインドもPreferences → Key Bindings - Defaultを開いて、変更したい部分をコピーして、Preferences → Key Bindings - Userにペーストして設定を変更できる。&lt;/p&gt;
-
-&lt;p&gt;どちらの設定ファイルもJSON形式で書かれているので編集はそれほど難しくない。&lt;/p&gt;
-
-&lt;h2&gt;おすすめプラグイン&lt;/h2&gt;
+&lt;h3&gt;npm&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeLinter/SublimeLinter&quot;&gt;SublimeLinter&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://npmjs.org/doc/&quot;&gt;npm documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.nodejs.org/2011/03/23/npm-1-0-global-vs-local-installation/&quot;&gt;npm 1.0: Global vs Local installation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://npmjs.org/&quot;&gt;npm&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://howtonode.org/introduction-to-npm&quot;&gt;Introduction to npm - How To Node - NodeJS&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://semver.org/&quot;&gt;Semantic Versioning 2.0.0-rc.1&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Sublime Text 2のプラグインの中で最も重宝するのがこのプラグイン。&lt;br /&gt;
-SublimeLinterはcsslint、jshint、PythonやRubyなどのlintプログラムをリアルタイムに実行してくれる。Package Controlからインストールできる。&lt;/p&gt;
+&lt;h3&gt;package.json&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/BoundInCode/AutoFileName&quot;&gt;AutoFileName&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://package.json.jit.su/&quot;&gt;Package.json: an interactive guide&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://docs.nodejitsu.com/articles/getting-started/npm/what-is-the-file-package-json&quot;&gt;What is the file package.json?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.nodejitsu.com/package-dependencies-done-right&quot;&gt;Package.json dependencies done right&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;その名の通りファイル名の自動補完をSublime Text 2のデフォルトの自動補完機能に追加するプラグイン。&lt;br /&gt;
-ちなみに自動補完の起動はcontrol + space&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/sublimator/sublime-2-zencoding&quot;&gt;Zen Coding&lt;/a&gt;  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;HTML、CSSをより早く記述するのに便利なZen Coding。Package Controlから直接はインストールできなかったので、Package Control: add repositoryからhttps://bitbucket.org/sublimator/sublime-2-zencodingを追加してインストール。  &lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;div.text&lt;/code&gt;のようないつもの記述をtabでExpandしてくれる。他のコマンドについては~/Library/Application\ Support/Sublime\ Text\ 2/Packages/ZenCodingのkeymapを確認できる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/jQuery&quot;&gt;jQuery&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;jQueryの関数達を自動補完してくれる。&lt;br /&gt;
-jQueryチームのメンバー数名が作成したというだけあって信頼できるプラグイン。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/wbond/sublime_prefixr&quot;&gt;Sublime Prefixr&lt;/a&gt;  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;CSS3のブラウザベンダープリフィックスを補完してくれるウェブサービス&lt;a href=&quot;http://prefixr.com/&quot;&gt;Nettuts+ Prefixr&lt;/a&gt;を直接利用できる。Package Controlからインストール可能。&lt;/p&gt;
-
-&lt;p&gt;補完したいルールセットを選択してCommand + Control + x で実行。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/Tag&quot;&gt;Tag&lt;/a&gt;  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;HTMLに関する様々な機能を拡張するプラグイン。&lt;br /&gt;
-スラッシュで自動的にタグを閉じる、タグのインデントなどを追加。
-インストールはPackage Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/robcowie/SublimeTODO&quot;&gt;SublimeTODO&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;TODOやNOTE、FIXMEなどのような文字列をコメント内に残しておいて、それらのみを検索し別ウィンドウで開いてナビゲーションできる。&lt;br /&gt;
-利用には若干設定が必要だが&lt;a href=&quot;https://gist.github.com/2049887&quot;&gt;こちら&lt;/a&gt;を参照してほしい。Preferences - Settings Userから設定ファイルを開いて、リンク先の11行目から25行目までをコピーして、既存の設定の後ろに追加。&lt;/p&gt;
-
-&lt;p&gt;Control + pからShow TODOsとタイプするとShow TODOs: Project and open filesという補完があるはずなのでエンターで別ウィンドウで結果が表示される。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jdc0589/JsFormat&quot;&gt;JsFormat&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;JavaScriptのフォーマットを&lt;a href=&quot;http://jsbeautifier.org/&quot;&gt;http://jsbeautifier.org/&lt;/a&gt;のツールで整えてくれるプラグイン。&lt;br /&gt;
-readmeにはcontrol + Option + fでプラグインを利用出来るとあるが、Tagプラグインと競合していて動作しないのでCommand PaletteからFormat: Javascriptで実行している。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://net.tutsplus.com/articles/news/introducing-nettuts-fetch/&quot;&gt;Nettuts+ Fetch&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Nettus+が作成したFetchプラグイン。&lt;br /&gt;
-jQueryやnormalize.cssなどの単体ファイルの最新版をいつもgithubに取得しに行っていたり、自分で作成したパッケージをzipにしていたりする場合はそれらを設定しておけばこのプラグインで取得出来る。&lt;br /&gt;
-zipファイルは自動で解凍される。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/facelessuser/BracketHighlighter&quot;&gt;BracketHighlighter&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code&gt;(),[],&amp;lt;&amp;gt;,{}&lt;/code&gt;、HTMLタグを強調表示。(HTMLタグはややバグっぽい挙動もある様子)。&lt;br /&gt;
-インストールはPackage Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/kemayo/sublime-text-2-git&quot;&gt;git&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Command Palleteから直接gitコマンドを利用できるようにするプラグイン。&lt;br /&gt;
-インストールはPackage Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/SublimeText/SideBarGit&quot;&gt;SideBarGit&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sublime Text 2のサイドバーからGitコマンドを実行できるようにするプラグイン。&lt;br /&gt;
-インストールはPackage Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/titoBouzout/SideBarEnhancements&quot;&gt;SideBarEnhancements&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sidebarに削除、実行などの機能を追加するプラグイン。&lt;br /&gt;
-ファイルを別のアプリケーションで開く、という設定もできる。
-Packageまわりは少しバグがあるようでほぼ動作しない様子だがかなり便利。&lt;br /&gt;
-こちらもPackage Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/danro/LESS-sublime&quot;&gt;LESS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;LESSファイルのシンタックスハイライタ。&lt;br /&gt;
-LESSを保存と同時にコンパイルするプラグインもあるが、私は別プロセスで処理しているのでハイライタだけ利用。&lt;br /&gt;
-Package Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/bgreenlee/sublime-github&quot;&gt;Sublime GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;少々ややこしいネーミングながらgithubのgistをSublime Text 2から利用できるようになる。&lt;br /&gt;
-Command Palleteからgistの表示、gistへの投稿などを行うことができる。&lt;br /&gt;
-Package Controlから。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/netpro2k/SublimeBlockCursor&quot;&gt;SublimeBlockCursor&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Vimモードに近しいVintageモードに変更するとCommand Modeの際にカーソルの位置が分かりづらくなるのでこのプラグインで解決。&lt;br /&gt;
-私の環境ではPackage Controlからはインストールできなかったので、直接PackageへCloneした。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://andrewbrookins.com/tech/make-sublime-text-2-more-like-vim-wrap-code-goto-last-edit-and-more/&quot;&gt;Make Sublime Text 2 More like Vim: Wrap Code, Go To Last Edit, and More&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Vimで使えるちょっと便利なコマンドをエミュレートするプラグイン達。&lt;br /&gt;
-好きなものを選んで利用中。&lt;br /&gt;
-Package Controlからはインストールできないので、Packagesディレクトリに直接cloneした。&lt;/p&gt;
-
-&lt;h2&gt;Tips&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Vim風キーバインドに変換する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Command PaletteにてPackage Control: Enable Packageを選んでエンターしてVintageモードを有効にする。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TextMateのカラースキームを利用する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sublime Text 2ではTextMateの.tmbundleファイルを利用することができます。またカラースキームファイルも利用可能。&lt;br /&gt;
-packageフォルダ直下に.tmbundleをコピーしてSublime Text 2を再起動すればメニューからカラースキームを選択できる。&lt;br /&gt;
-私が現在使っているのは&lt;a href=&quot;https://github.com/chriskempson/textmate-tomorrow-theme&quot;&gt;Tomorrow Theme&lt;/a&gt;のNight Eighties。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HTMLファイル内をIDやClass名で移動する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Command + Pでファインダを立ち上げ、&lt;code&gt;#&lt;/code&gt;を入力するとHTMLからID名、Class名などを検索できる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;行番号に移動する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Control + gでも移動できるが、Command + pから&lt;code&gt;:&lt;/code&gt;を入力し行番号をタイプしても移動できる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;TerminalからSublimeを起動する&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin
-にあるsublをbinなどにsymlinkすればOK。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;sudo ln -s &lt;span class=&quot;s2&quot;&gt;&amp;quot;/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl&amp;quot;&lt;/span&gt; /bin/subl
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Sublime Text 2の設定の同期&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sublime Text 2の設定は&lt;br /&gt;
-&lt;code&gt;~/Library/Application Support/Sublime Text 2/&lt;/code&gt;&lt;br /&gt;
-に保存されているので中にあるディレクトリをDropboxに移動しsymlinkすればOK。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/Library/Application Support/Sublime Text 2/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;ディレクトリに移動して
-Dropboxに作成した/appdata/sublime/に元々あったディレクトリを移動。&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;sh&quot;&gt;ln -s ~/Dropbox/appdata/sublime/Installed&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Packages ./Installed&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Packages
-ln -s ~/Dropbox/appdata/sublime/Packages ./Packages
-ln -s ~/Dropbox/appdata/sublime/Pristine&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Packages ./Pristine&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;Packages
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;以上でDropboxに置いた設定ファイル群から&lt;code&gt;~/Library/Application Support/Sublime Text 2/&lt;/code&gt;にsymlinkできる。&lt;br /&gt;
-Sublime Textは閉じたままで作業しよう。&lt;/p&gt;
-
-				&lt;hr /&gt;
-				&lt;h5&gt;Elsewhere&lt;/h5&gt;
-				&lt;ul&gt;
-					&lt;li&gt;&lt;a href=&quot;http://twitter.com/#!/cssradar&quot; rel=&quot;me&quot; title=&quot;cssradar@twitter&quot;&gt;cssradar@twitter&lt;/a&gt; / 1日5件以内のウェブデザイン情報をつぶやきます&lt;/li&gt;
-					&lt;li&gt;&lt;a href=&quot;http://tinyletter.com/cssradar&quot; rel=&quot;me&quot; title=&quot;Newsletter&quot;&gt;CSS Radar Newsletter&lt;/a&gt; / CSS Radarニュースレター。Twitterまとめ + α&lt;/li&gt;
-					&lt;li&gt;&lt;a href=&quot;https://plus.google.com/b/109704095110060909968/&quot; rel=&quot;me&quot; title=&quot;Google+ Page&quot;&gt;Google +&lt;/a&gt; / どんな風に使っていくかアイデア募集中&lt;/li&gt;
-				&lt;/ul&gt;
-			</content>
-		</entry>
-	
-		<entry>
-			<title>Build Script using Jake</title>
-			<link href="http://publicdraft.studiomohawk.com/research/2012/04/07/20-41-jake/"/>
-			<updated></updated>
-			<id>http://publicdraft.studiomohawk.com/research/2012/04/07/20-41-jake</id>
-			<content type="html">
-				&lt;h2&gt;パッケージ&lt;/h2&gt;
-
-&lt;h3&gt;LESS&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/akoenig/laessig&quot;&gt;akoenig/laessig&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;.less&lt;/code&gt;ファイルの保存時にLESSをCSSに変換。&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;laessig observe /the/path/to/your/file.less&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;CSS圧縮&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/ded/sqwish&quot;&gt;ded/sqwish&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;sqwish styles.css&lt;/code&gt;  &lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;sqwish styles.css --strict&lt;/code&gt; / 重複するセレクタをマージ&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;CSS結合&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/cloudhead/less.js&quot;&gt;cloudhead/less.js&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;master.less&lt;/code&gt;などに&lt;code&gt;@import&lt;/code&gt;で全CSSファイルを呼び出す。  &lt;/li&gt;
-  &lt;li&gt;LESSのコンパイルで結合。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;CSS シンタックスチェック&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/stubbornella/csslint/wiki/Command-line-interface&quot;&gt;Command-line Interface · stubbornella/csslint Wiki&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3&gt;JavaScript圧縮&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/mishoo/UglifyJS&quot;&gt;mishoo/UglifyJS&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code&gt;uglifyjs -o OUTPUT-FILENAME INPUT-FILENAME&lt;/code&gt; / ファイル名を変更  &lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;uglifyjs --overwrite INPUT_FILENAME&lt;/code&gt; / ファイルを上書き&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;JavaScript結合&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/ender-js/Ender&quot;&gt;ender-js/Ender&lt;/a&gt;&lt;/strong&gt;  &lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://ender.no.de/#publishing&quot;&gt;Ender / publishing&lt;/a&gt;でEnder用のパッケージの作成方法について書かれている。  &lt;/p&gt;
-
-&lt;p&gt;疑問: &lt;code&gt;repository&lt;/code&gt;は必須か？&lt;/p&gt;
-
-&lt;h3&gt;JavaScript シンタックスチェック&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/jshint/node-jshint/&quot;&gt;jshint/node-jshint&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3&gt;その他&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/ryanmcgrath/wrench-js&quot;&gt;ryanmcgrath/wrench-js&lt;/a&gt;&lt;/strong&gt; / ファイルの作成、コピー、移動&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/isaacs/node-glob&quot;&gt;isaacs/node-glob&lt;/a&gt;&lt;/strong&gt; / ファイルパスを文字列パターンから検索&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Ruby / Python / UNIXツール&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://yostudios.github.com/Spritemapper/&quot;&gt;Spritemapper&lt;/a&gt; / CSS Spriteの生成&lt;/li&gt;
-  &lt;li&gt;gifsicle、libjpeg、optipng、pngcrushを使った画像最適化&lt;/li&gt;
-  &lt;li&gt;rsyncでサーバにアップ&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;参考リンク&lt;/h2&gt;
-
-&lt;h3&gt;記事&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.millermedeiros.com/node-js-as-a-build-script/&quot;&gt;Node.js as a build script by Miller Medeiros&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://howtonode.org/intro-to-jake&quot;&gt;Intro to Jake - JavaScript build tool for Node.js by How To Node&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://clock.co.uk/tech-blogs/deploying-nodejs-apps&quot;&gt;Deploying node.js apps by Ben Gourley by Clock&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://upliftingcode.com/blog/front-end-build-script-tasks&quot;&gt;upliftingcode: Front End Build Script Tasks - deciphering the web one variable at a time&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;リポジトリ&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/balupton/buildr.npm&quot;&gt;balupton/buildr.npm&lt;/a&gt; / 画像圧縮まわり&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/BrainSwap/Mandible2&quot;&gt;BrainSwap/Mandible2&lt;/a&gt; / jakeFileの設定まわり&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/mde/jake&quot;&gt;mde/jake&lt;/a&gt; / jakeのシンタックス&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/h5bp/node-build-script&quot;&gt;h5bp/node-build-script&lt;/a&gt; / デファクトデフォルトなので参考に&lt;/li&gt;
-&lt;/ul&gt;
 
 				&lt;hr /&gt;
 				&lt;h5&gt;Elsewhere&lt;/h5&gt;

@@ -6,28 +6,18 @@
 		http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <url>
 <loc>http://publicdraft.studiomohawk.com</loc>
-	<lastmod>2012-11-24T12:41:09+09:00</lastmod>
+	<lastmod>2012-12-16T22:43:22+09:00</lastmod>
 	<priority>1.0</priority>
 </url>
 
 <url>
-	<loc>http://publicdraft.studiomohawk.com/research/2012/07/16/docpad/</loc>
-	<lastmod>2012-07-16T12:50:23+09:00</lastmod>
+	<loc>http://publicdraft.studiomohawk.com/2012/12/16/jade-as-prototype-language/</loc>
+	<lastmod>2012-12-16T20:20:48+09:00</lastmod>
 </url>
 
 <url>
-	<loc>http://publicdraft.studiomohawk.com/research/2012/05/20/grunt-a-javascript-command-line-build-tool/</loc>
-	<lastmod>2012-05-20T21:14:24+09:00</lastmod>
-</url>
-
-<url>
-	<loc>http://publicdraft.studiomohawk.com/research/2012/04/14/01-02-sublimetext2/</loc>
-	<lastmod>2012-04-14T00:00:00+09:00</lastmod>
-</url>
-
-<url>
-	<loc>http://publicdraft.studiomohawk.com/research/2012/04/07/20-41-jake/</loc>
-	<lastmod>2012-04-07T00:00:00+09:00</lastmod>
+	<loc>http://publicdraft.studiomohawk.com/2012/12/16/npm-and-package.json/</loc>
+	<lastmod>2012-12-16T09:58:27+09:00</lastmod>
 </url>
 
 </urlset>

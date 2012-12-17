@@ -5,7 +5,7 @@
 		</div>
 		<div class="bd">
 			<ul class="list-none">
-			{% for post in site.posts %}
+			{% for post in site.posts offset:1 %}
 			<li>
 			<div class="group">
 				<h6 class="post-title"><a href="{{ post.url }}" title="{{ post.title }}">

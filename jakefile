@@ -66,9 +66,9 @@ gsub = function(source, pattern, replacement) {
 };
 
 // ## Tasks
-desc('Start writing!');
+desc('Start writing! write[]');
 task('write', function(title) {
-	var filename = getDate('filename') + '-' + gsub(title, '/\s/', '-').toLowerCase() + '.markdown';
+	var filename = getDate('filename') + '-' + title.replace(/\s+/g, '-').toLowerCase() + '.markdown';
 	var path = "_posts/";
 	var yml = getDate('yml');
 	var output = path + filename;
@@ -77,9 +77,9 @@ task('write', function(title) {
 	stream.once('open', function(fd) {
 		stream.write('---\n');
 		stream.write('layout: post\n');
-		stream.write('title: ' + title + '\n');
+		stream.write('title: "' + title + '"\n');
 		stream.write('date: ' + yml + '\n');
-		stream.write('category:\n');
+		stream.write('byline: "Yuya Saito"\n');
 		stream.write('---\n');
 	});
 });

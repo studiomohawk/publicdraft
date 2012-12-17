@@ -12,7 +12,8 @@ module.exports = function(grunt) {
 			compile: {
 				options: {
 					paths: ['asset/style','node_modules/grunt-contrib-stylus/node_modules'],
-					compress: false
+					compress: false,
+          urlfunc: 'embedurl'
 				},
 				files: {
 					'asset/style/master.css': 'asset/style/master.styl'

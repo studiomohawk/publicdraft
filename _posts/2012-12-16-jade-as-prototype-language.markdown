@@ -136,7 +136,7 @@ html
   ./callout.scss
   ./bookmarks.scss
   ./btn.scss
- 	./btn-compose.scss
+  ./btn-compose.scss
 ./base.scss
 ./states.scss
 ./site-settings.scss
@@ -149,9 +149,9 @@ html
 .index.jade
 ./includes/
   ./system/
-		./head.jade
-		./foot.jade
-	./lauout/
+    ./head.jade
+    ./foot.jade
+  ./layout/
     ./grid.jade
   ./module/
     ./btn.jade

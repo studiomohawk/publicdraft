@@ -4,7 +4,7 @@
   "devDependencies": {
     "grunt": "~0.4.x",
     "grunt-contrib-watch": "~0.2.0a",
-    "grunt-contrib-stylus": "~0.3.x",
+    "grunt-contrib-stylus": "git://github.com/gruntjs/grunt-contrib-stylus.git#master",
     "grunt-csso": "~0.2.x",
     "grunt-jekyll": "~0.2.x"
   }
